@@ -19,7 +19,7 @@ public class Simulator {
         Field field  = new Field(50,50);
         SimulatorView simulatorView = new SimulatorView(50,50);
         
-        simulatorView.setColor(Class.forName(Plankton), Color.RED);
+        simulatorView.setColor(Plankton.class, Color.RED);
     }
     
 }
