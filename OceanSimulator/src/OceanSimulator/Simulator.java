@@ -19,12 +19,10 @@ public class Simulator {
      * Initialise creatures, field and its view. They are created once here and
      * passed to the parts that need them so there is only one copy of each.
      */
-    private static SimulatorView simulatorView;
-    private static Field field;
+    private SimulatorView simulatorView;
+    private Field field;
 
-    private Plankton plankton;
-    private Sardine sardine;
-    private Shark shark;
+
     private Random rand;
 
     public static final double PLANKTON_CREATE_PROB = 0.3;
