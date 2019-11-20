@@ -32,27 +32,11 @@ public class Simulator {
         simulatorView.setColor(Plankton.class, Color.green);
         simulatorView.setColor(Sardine.class, Color.orange);
         simulatorView.setColor(Shark.class, Color.red);
-        
 
     }
     
     
     public static void main(String[] args){
-//        Plankton plankton = new Plankton();
-//        Sardine sardine = new Sardine();
-//        Shark shark = new Shark();
-//        Field field  = new Field(50,50);
-//        SimulatorView simulatorView = new SimulatorView(50,50);
-//        
-//        simulatorView.setColor(Plankton.class, Color.green);
-//        simulatorView.setColor(Sardine.class, Color.orange);
-//        simulatorView.setColor(Shark.class, Color.red);
-//        
-//        field.place(plankton, 10, 10);
-//        field.place(sardine, 20, 20);
-//        field.place(shark, 30, 30);
-//        
-//        simulatorView.showStatus(0, field);
         Simulator simulator = new Simulator(50,50);
         simulator.startSimulaion();
     }

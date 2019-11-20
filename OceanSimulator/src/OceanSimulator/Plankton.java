@@ -9,7 +9,7 @@ package OceanSimulator;
  *
  * @author 180127003
  */
-public class Plankton {
+public class Plankton extends Creature{
 
     public Plankton() {
     }

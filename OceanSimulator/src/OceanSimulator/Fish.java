@@ -9,6 +9,6 @@ package OceanSimulator;
  *
  * @author 180127003
  */
-public class Fish {
+public abstract class Fish extends Creature{
     
 }
