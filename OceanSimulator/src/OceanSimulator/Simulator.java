@@ -18,11 +18,23 @@ public class Simulator {
      * They are created once here and passed to the parts that
      * need them so there is only one copy of each.
      */
-    private SimulatorView simulatorView;
-    private Field field;
+    private static SimulatorView simulatorView;
+    private static Field field;
+
+    
     private Plankton plankton;
     private Sardine sardine;
     private Shark shark;
+    
+        private Simulator(int row, int col){
+        field  = new Field(row, col);
+        simulatorView = new SimulatorView(row, col);
+        simulatorView.setColor(Plankton.class, Color.green);
+        simulatorView.setColor(Sardine.class, Color.orange);
+        simulatorView.setColor(Shark.class, Color.red);
+        
+
+    }
     
     
     public static void main(String[] args){
@@ -41,19 +53,10 @@ public class Simulator {
 //        field.place(shark, 30, 30);
 //        
 //        simulatorView.showStatus(0, field);
+        Simulator simulator = new Simulator(50,50);
+        simulator.startSimulaion();
     }
-    public Simulator(int row, int col){
-        field  = new Field(row, col);
-        simulatorView = new SimulatorView(row, col);
-        simulatorView.setColor(Plankton.class, Color.green);
-        simulatorView.setColor(Sardine.class, Color.orange);
-        simulatorView.setColor(Shark.class, Color.red);
-        
-        
-        
 
-        
-    }
     
     private void populate(){
         plankton = new Plankton();
