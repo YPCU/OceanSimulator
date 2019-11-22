@@ -11,4 +11,7 @@ package OceanSimulator;
  */
 public abstract class Fish extends Creature{
     
+    public void act(Location location){
+        
+    }
 }

@@ -11,4 +11,8 @@ package OceanSimulator;
  */
 public abstract class Creature {
     
+    void act()
+    {
+        
+    }
 }

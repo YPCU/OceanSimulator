@@ -6,6 +6,7 @@
 package OceanSimulator;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -21,19 +22,18 @@ public class Simulator {
      */
     private SimulatorView simulatorView;
     private Field field;
-
+    private ArrayList<Creature> creatures;
+    private Field currentField;
 
     private Random rand;
-
-    
 
     private Simulator(int row, int col) {
         RandomGenerator.initialiseWithSeed(4);
         rand = RandomGenerator.getRandom();
-        if (row>0 && col > 0){
-        field = new Field(row, col);
-        } else 
-        {
+        creatures = new ArrayList<Creature>();
+        if (row > 0 && col > 0) {
+            field = new Field(row, col);
+        } else {
             field = new Field(ModelConstants.DEFAULT_DEPTH, ModelConstants.DEFAULT_WIDTH);
         }
         simulatorView = new SimulatorView(row, col);
@@ -58,14 +58,15 @@ public class Simulator {
         for (int i = 0; i < field.getDepth(); i++) {
             for (int j = 0; j < field.getWidth(); j++) {
                 double probability = rand.nextDouble();
-                 if (probability < ModelConstants.SHARK_CREATE_PROB) {
+                if (probability < ModelConstants.SHARK_CREATE_PROB) {
                     field.place(new Shark(), i, j);
-                } 
-                else if (probability < ModelConstants.PLANKTON_CREATE_PROB) {
+                    creatures.add(new Shark());
+                } else if (probability < ModelConstants.PLANKTON_CREATE_PROB) {
                     field.place(new Plankton(), i, j);
-                } 
-                else if (probability < ModelConstants.SARDINE_CREATE_PROB) {
+                    creatures.add(new Plankton());
+                } else if (probability < ModelConstants.SARDINE_CREATE_PROB) {
                     field.place(new Sardine(), i, j);
+                    creatures.add(new Sardine());
                 } else {
                 }
             }
@@ -77,16 +78,16 @@ public class Simulator {
         populate();
         simulatorView.showStatus(0, field);
     }
-    
+
     private void simulateOneStep() {
-        populate();
-        simulatorView.showStatus(0, field);
+        for (Creature creature : creatures) {
+            creature.act();
+        }
     }
-    
-    private void simulate(int numOfStep){
-        for(int i = 0 ; i < numOfStep ; i++)
-        {
-            if (!simulatorView.isViable(field)){
+
+    private void simulate(int numOfStep) {
+        for (int i = 0; i < numOfStep; i++) {
+            if (!simulatorView.isViable(field)) {
                 break;
             }
             simulateOneStep();
