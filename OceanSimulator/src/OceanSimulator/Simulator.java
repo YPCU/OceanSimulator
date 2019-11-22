@@ -77,5 +77,20 @@ public class Simulator {
         populate();
         simulatorView.showStatus(0, field);
     }
+    
+    private void simulateOneStep() {
+        populate();
+        simulatorView.showStatus(0, field);
+    }
+    
+    private void simulate(int numOfStep){
+        for(int i = 0 ; i < numOfStep ; i++)
+        {
+            if (!simulatorView.isViable(field)){
+                break;
+            }
+            simulateOneStep();
+        }
+    }
 
 }
