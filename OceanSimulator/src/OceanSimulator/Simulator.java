@@ -25,14 +25,17 @@ public class Simulator {
 
     private Random rand;
 
-    public static final double PLANKTON_CREATE_PROB = 0.3;
-    public static final double SARDINE_CREATE_PROB = 0.4;
-    public static final double SHARK_CREATE_PROB = 0.2;
+    
 
     private Simulator(int row, int col) {
         RandomGenerator.initialiseWithSeed(4);
         rand = RandomGenerator.getRandom();
+        if (row>0 && col > 0){
         field = new Field(row, col);
+        } else 
+        {
+            field = new Field(ModelConstants.DEFAULT_DEPTH, ModelConstants.DEFAULT_WIDTH);
+        }
         simulatorView = new SimulatorView(row, col);
         simulatorView.setColor(Plankton.class, Color.green);
         simulatorView.setColor(Sardine.class, Color.orange);
@@ -55,13 +58,13 @@ public class Simulator {
         for (int i = 0; i < field.getDepth(); i++) {
             for (int j = 0; j < field.getWidth(); j++) {
                 double probability = rand.nextDouble();
-                 if (probability < SHARK_CREATE_PROB) {
+                 if (probability < ModelConstants.SHARK_CREATE_PROB) {
                     field.place(new Shark(), i, j);
                 } 
-                else if (probability < PLANKTON_CREATE_PROB) {
+                else if (probability < ModelConstants.PLANKTON_CREATE_PROB) {
                     field.place(new Plankton(), i, j);
                 } 
-                else if (probability < SARDINE_CREATE_PROB) {
+                else if (probability < ModelConstants.SARDINE_CREATE_PROB) {
                     field.place(new Sardine(), i, j);
                 } else {
                 }
