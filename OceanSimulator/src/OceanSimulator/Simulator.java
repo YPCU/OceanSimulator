@@ -1,33 +1,29 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package OceanSimulator;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Random;
+import java.awt.Color;
 
 /**
  *
  * @author 180127003
  */
+import java.util.Random;
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Simulator {
-
-    /**
-     *
-     * Initialise creatures, field and its view. They are created once here and
-     * passed to the parts that need them so there is only one copy of each.
-     */
-    private SimulatorView simulatorView;
-    private Field field;
-    private ArrayList<Creature> creatures;
-    private Field currentField;
-
-    private Random rand;
-
-    private Simulator(int row, int col) {
+  public static Field field;
+  public static SimulatorView view;
+  public static ArrayList<Creature> creatures;
+  public static int currentStep;   
+    
+  private Random rand;
+  
+    public Simulator(int row, int col) {
         RandomGenerator.initialiseWithSeed(4);
         rand = RandomGenerator.getRandom();
         creatures = new ArrayList<Creature>();
@@ -36,62 +32,95 @@ public class Simulator {
         } else {
             field = new Field(ModelConstants.DEFAULT_DEPTH, ModelConstants.DEFAULT_WIDTH);
         }
-        simulatorView = new SimulatorView(row, col);
-        simulatorView.setColor(Plankton.class, Color.green);
-        simulatorView.setColor(Sardine.class, Color.orange);
-        simulatorView.setColor(Shark.class, Color.red);
-
+        view = new SimulatorView(row, col);
+        view.setColor(Plankton.class, Color.green);
+        view.setColor(Sardine.class, Color.orange);
+        view.setColor(Shark.class, Color.red);
+       currentStep = 0;
+       
+       startSimulation();
     }
-
-    public static void main(String[] args) {
-        Simulator simulator = new Simulator(50, 50);
-        simulator.startSimulaion();
-    }
-
+    
     /**
-     * populate the field. Notice the probability must go from low to high, if
-     * using else if structure.
-     *
+     * @populate add creatures to the field 
      */
-    private void populate() {
-        field.clear();
-        for (int i = 0; i < field.getDepth(); i++) {
-            for (int j = 0; j < field.getWidth(); j++) {
-                double probability = rand.nextDouble();
-                if (probability < ModelConstants.SHARK_CREATE_PROB) {
-                    field.place(new Shark(), i, j);
-                    creatures.add(new Shark());
-                } else if (probability < ModelConstants.PLANKTON_CREATE_PROB) {
-                    field.place(new Plankton(), i, j);
-                    creatures.add(new Plankton());
-                } else if (probability < ModelConstants.SARDINE_CREATE_PROB) {
-                    field.place(new Sardine(), i, j);
-                    creatures.add(new Sardine());
-                } else {
-                }
-            }
+    public void populate(){
+     Random rand = RandomGenerator.getRandom();   
+     field.clear();
+     int x = field.getWidth();
+     int y = field.getDepth();
+     double sharkprob = ModelConstants.SHARK_CREATE_PROB;
+     double sardineprob = ModelConstants.SARDINE_CREATE_PROB;
+     double planktonprob = ModelConstants.PLANKTON_CREATE_PROB;
+     
+     
+     for(int row =0;row<x;++row){
+        for(int col=0;col<y;++col){
+          double prob = rand.nextDouble();
+          if(prob<sharkprob){
+          Shark shark = new Shark(row,col);   
+          field.place(shark,row,col);
+          creatures.add(shark);
+          }
+          else if(prob>(sharkprob)&& prob<(sardineprob+sharkprob)){
+            Sardine sardine = new Sardine(row,col);
+            field.place(sardine, row,col);
+            creatures.add(sardine);
+          }
+          else if(prob>(sardineprob+sharkprob) && prob<(sardineprob+sharkprob+planktonprob)){
+           Plankton plankton = new Plankton(row,col);   
+            field.place(plankton,row,col);
+            creatures.add(plankton);
         }
+          else{}
+     }
+     }
 
+     
     }
-
-    private void startSimulaion() {
-        populate();
-        simulatorView.showStatus(0, field);
+    
+   
+    /**
+     * @start starts the simulation 
+     */
+    public void startSimulation(){
+    populate();
+    view.showStatus(0, field);
+    simulate(1000);
     }
-
-    private void simulateOneStep() {
-        for (Creature creature : creatures) {
-            creature.act();
-        }
-    }
-
-    private void simulate(int numOfStep) {
+    
+    
+    /**
+     * Simulates a single time jump in the simulation
+     */
+    public void simulateOneStep(){
+     Collections.shuffle(creatures, RandomGenerator.getRandom());
+     for(int i=0;i<creatures.size();i++){
+      Creature creature = creatures.get(i);
+      creature.act(field);
+      }
+     currentStep++;
+     view.showStatus(currentStep, field);
+     }
+    
+    /**
+     * 
+     * @param steps the number of time steps to go through 
+     */
+     private void simulate(int numOfStep) {
         for (int i = 0; i < numOfStep; i++) {
-            if (!simulatorView.isViable(field)) {
+            if (!view.isViable(field)) {
                 break;
             }
             simulateOneStep();
         }
     }
+    
+    
+       public static void main(String[] args) {
+        Simulator simulator = new Simulator(50, 50);
+        simulator.startSimulation();
+    }
 
+    
 }

@@ -107,7 +107,7 @@ public class Field
 	{
 		Iterator adjacent = adjacentLocations(location);
 		while(adjacent.hasNext()) {
-			Location next = (Location) adjacent.next();
+			Location next = (Location)adjacent.next();
 			if(field[next.getRow()][next.getCol()] == null) {
 				return next;
 			}

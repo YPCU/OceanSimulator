@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package OceanSimulator;
 
 /**
@@ -10,8 +11,10 @@ package OceanSimulator;
  * @author 180127003
  */
 public abstract class Fish extends Creature{
-    
-    public void act(Location location){
-        
+
+    public Fish(int x, int y) {
+        super(x, y);
     }
+
+    
 }

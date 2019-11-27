@@ -3,12 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package OceanSimulator;
 
 /**
  *
  * @author 180127003
  */
-public class Sardine extends Fish{
+public class Sardine extends Fish {
+
+    public Sardine(int x, int y) {
+        super(x, y);
+    }
+
+    @Override
+    public void act(Field theField) {
+      Location loc = theField.freeAdjacentLocation(location);
+      if(!(loc==null)){
+       theField.place(null, location);
+       setLocation(loc);
+       theField.place(this, location);
+    }
+
     
+  }
 }

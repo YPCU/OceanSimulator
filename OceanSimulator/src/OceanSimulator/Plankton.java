@@ -3,16 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package OceanSimulator;
 
 /**
  *
  * @author 180127003
  */
-public class Plankton extends Creature{
+public class Plankton extends Creature {
 
-    public Plankton() {
+    public Plankton(int x, int y) {
+        super(x, y);
     }
-    
-    
+
+    @Override
+    public void act(Field theField) {
+     
+    }
+
 }
