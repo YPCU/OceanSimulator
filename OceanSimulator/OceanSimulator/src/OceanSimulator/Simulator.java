@@ -14,6 +14,8 @@ import java.awt.Color;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Simulator {
   public static Field field;
@@ -43,7 +45,7 @@ public class Simulator {
     }
     
     /**
-     * @populate add creatures to the field 
+     * @populate initialise the creatures to the field at the beginning
      */
     public void populate(){
      Random rand = RandomGenerator.getRandom();   
@@ -59,17 +61,17 @@ public class Simulator {
         for(int col=0;col<y;++col){
           double prob = rand.nextDouble();
           if(prob<sharkprob){
-          Shark shark = new Shark(row,col,rand.nextBoolean());   
+          Shark shark = new Shark(row,col,true);   
           field.place(shark,row,col);
           creatures.add(shark);
           }
           else if(prob>(sharkprob)&& prob<(sardineprob+sharkprob)){
-            Sardine sardine = new Sardine(row,col,rand.nextBoolean());
+            Sardine sardine = new Sardine(row,col,true);
             field.place(sardine, row,col);
             creatures.add(sardine);
           }
           else if(prob>(sardineprob+sharkprob) && prob<(sardineprob+sharkprob+planktonprob)){
-           Plankton plankton = new Plankton(row,col, rand.nextBoolean());   
+           Plankton plankton = new Plankton(row,col,true);   
             field.place(plankton,row,col);
             creatures.add(plankton);
         }
@@ -95,6 +97,11 @@ public class Simulator {
      * Simulates a single time jump in the simulation
      */
     public void simulateOneStep(){
+        try {
+          Thread.sleep(2000);
+      } catch (InterruptedException ex) {
+          Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
+      }
      Collections.shuffle(creatures, RandomGenerator.getRandom());
      for(int i=0;i<creatures.size();i++){
       Creature creature = creatures.get(i);
@@ -102,6 +109,7 @@ public class Simulator {
       }
      currentStep++;
      view.showStatus(currentStep, field);
+      
      }
     
     /**

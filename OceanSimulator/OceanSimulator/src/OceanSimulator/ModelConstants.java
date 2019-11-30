@@ -29,5 +29,8 @@ public class ModelConstants {
     public static final int SARDINE_MAX_AGE = 50;
     //declearing the max age that shark can live up to.
     public static final int SHARK_MAX_AGE = 100;
+    
+    public static final int SARDINE_NUTRITIONAL_VALUE = 14;
+    public static final int PLANKTON_NUTRITIONAL_VALUE = 4;
 }
      

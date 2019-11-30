@@ -11,7 +11,7 @@ package OceanSimulator;
  * @author 180127003
  */
 public class Plankton extends Creature {
-
+    
     public Plankton(int x, int y, boolean randAge) {
         super(x, y, randAge);
         
@@ -19,6 +19,8 @@ public class Plankton extends Creature {
 
     @Override
     public void act(Field theField) {
+    // killIfDead(theField) is executed in the condition 
+    if(killIfDead(theField)) return;
      incrementAge();
     }
 

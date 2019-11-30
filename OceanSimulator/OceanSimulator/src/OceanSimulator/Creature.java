@@ -18,7 +18,7 @@ public abstract class Creature {
 protected Location location;
 protected int age;
 protected boolean isAlive;
-protected int foodLevel;
+
 
 /** 
     * @param int x = position of creature
@@ -28,7 +28,6 @@ protected int foodLevel;
     public Creature(int x,int y, boolean randAge) {
       location = new Location(x,y);
       Random rand = new Random ();
-      foodLevel = 100;
       
       
     if (this instanceof Plankton && randAge) {
@@ -46,9 +45,6 @@ protected int foodLevel;
         }   
     }
 
-    public Creature(int foodLevel) {
-        this.foodLevel = foodLevel;
-    }
   
 
     //location
@@ -61,6 +57,7 @@ protected int foodLevel;
     public void setLocation(Location location) {
         this.location = location;
     }
+    
 // checks if creature is alive or not
     public boolean isAlive(){
     return isAlive;
@@ -84,30 +81,27 @@ protected int foodLevel;
         if (this instanceof Shark && age == ModelConstants.SHARK_MAX_AGE) {
             setIsAlive(false);
         } 
-        else if (this instanceof Sardine && age < ModelConstants.SARDINE_MAX_AGE) {
+        else if (this instanceof Sardine && age == ModelConstants.SARDINE_MAX_AGE) {
             setIsAlive(false);
         } 
-        else if (this instanceof Plankton && age < ModelConstants.PLANKTON_MAX_AGE) {
+        else if (this instanceof Plankton && age == ModelConstants.PLANKTON_MAX_AGE) {
             setIsAlive(false);
         }
 
     }
-        // food level
-    public int getFoodLevel() {
-        return foodLevel;
-    }
 
-    public void setFoodLevel(int foodLevel) {
-        this.foodLevel = foodLevel;
-    }
       
-    public void foodLevel (Field field){
-    Iterator adjacentLocations = field.adjacentLocations(location);
-        while (adjacentLocations.hasNext()) {
-        Location next = (Location) adjacentLocations.next();
-            //TODO: check if food exists here
-        }
     
-    }
+    
+    /*
+        true means creature killed.
+    */
+    public boolean killIfDead(Field field){
+        if(!this.isAlive){
+            field.place(null, location);
+            return true;
+        }
+        return false;
+    } 
         
 }
