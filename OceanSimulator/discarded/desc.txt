@@ -1,1 +1,0 @@
-This folder stores unwanted structure file of netbeans created for old version.
