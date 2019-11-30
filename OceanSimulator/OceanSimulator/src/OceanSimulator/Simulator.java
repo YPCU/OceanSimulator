@@ -79,7 +79,22 @@ public class Simulator {
      }
      }
 
-     
+     /*KUKKU COME BACK TO
+     for (i=0; i<row, i++){
+     for(j=0; j<column, j++){
+     if (rand < PLANTON.CREATE){
+     field[i][j]= new Plankton ();
+     }
+     else if (PLANKTON.CREATE < rand && 
+     rand <PLANKTON.CREATE+ SHARK.CREATE>){
+         field [i][j]= new Shark ();
+     }
+     else if (Plankton+Shark < rand && rand < Plankton+Shark+Sardine){
+     field[i][j]= new Sardine ();
+     }
+     else{}
+     }}
+     */
     }
     
    

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package OceanSimulator;
 
 import java.util.Iterator;
@@ -13,42 +12,37 @@ import java.util.Random;
  *
  * @author 180127003
  */
-
 public abstract class Creature {
-protected Location location;
-protected int age;
-protected boolean isAlive;
 
+    protected Location location;
+    protected int age;
+    protected boolean isAlive;
 
-/** 
-    * @param int x = position of creature
-    * @param int y = position of creature
-    * @param randAge = whether a creature will be created with a random age
-*/
-    public Creature(int x,int y, boolean randAge) {
-      location = new Location(x,y);
-      Random rand = new Random ();
-      
-      
-    if (this instanceof Plankton && randAge) {
+    /**
+     * @param int x = position of creature
+     * @param int y = position of creature
+     * @param randAge = whether a creature will be created with a random age
+     */
+    public Creature(int x, int y, boolean randAge) {
+        location = new Location(x, y);
+        Random rand = new Random();
+
+        if (this instanceof Plankton && randAge) {
             age = rand.nextInt(ModelConstants.PLANKTON_MAX_AGE);
-    }
-    if (this instanceof Sardine && randAge) {
+        }
+        if (this instanceof Sardine && randAge) {
             age = rand.nextInt(ModelConstants.SARDINE_MAX_AGE);
         }
-    if (this instanceof Shark && randAge) {
+        if (this instanceof Shark && randAge) {
             age = rand.nextInt(ModelConstants.SHARK_MAX_AGE);
-        } 
-    else {
+        } else {
             age = 0;
             isAlive = true;
-        }   
+        }
     }
 
-  
-
     //location
-   public abstract void act(Field theField);
+    public abstract void act(Field theField);
 
     public Location getLocation() {
         return location;
@@ -57,51 +51,65 @@ protected boolean isAlive;
     public void setLocation(Location location) {
         this.location = location;
     }
-    
+
 // checks if creature is alive or not
-    public boolean isAlive(){
-    return isAlive;
+    public boolean isAlive() {
+        return isAlive;
     }
-      
-    public void setIsAlive (boolean isAlive) {
-    this.isAlive = isAlive;
+
+    public void setIsAlive(boolean isAlive) {
+        this.isAlive = isAlive;
     }
-   
+
     //age
-   public int getAge () {
-   return age;
-   }
-   
-   public void setAge (int age) {
-   this.age = age;
-   }
-  
-       public void incrementAge() {
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void incrementAge() {
         age++;
         if (this instanceof Shark && age == ModelConstants.SHARK_MAX_AGE) {
             setIsAlive(false);
-        } 
-        else if (this instanceof Sardine && age == ModelConstants.SARDINE_MAX_AGE) {
+        } else if (this instanceof Sardine && age == ModelConstants.SARDINE_MAX_AGE) {
             setIsAlive(false);
-        } 
-        else if (this instanceof Plankton && age == ModelConstants.PLANKTON_MAX_AGE) {
+        } else if (this instanceof Plankton && age == ModelConstants.PLANKTON_MAX_AGE) {
             setIsAlive(false);
         }
 
     }
 
-      
-    
-    
     /*
         true means creature killed.
-    */
-    public boolean killIfDead(Field field){
-        if(!this.isAlive){
+     */
+    public boolean killIfDead(Field field) {
+        if (!this.isAlive) {
             field.place(null, location);
             return true;
         }
         return false;
-    } 
-        
+    }
+
+    /* BREEDING KUKKU COME BACK TO
+    public void act(Location location) {
+        if (isAlive) {
+            if (age < ModelConstants.BREEDING_AGE) {
+                Creature fish = new Shark(location.getRow(), location.getCol(), true);
+                fish.setLocation(location);
+            }
+            if (ok = findFood()) {
+//move to food location
+            } else {
+                energy = cost;
+                if (findFreeSpace()) {
+//move to free space
+                }
+            }
+            isAlive = false;
+        }
+    }
+    */
 }
