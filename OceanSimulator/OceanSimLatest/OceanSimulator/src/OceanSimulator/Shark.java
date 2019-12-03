@@ -45,8 +45,10 @@ public class Shark extends Fish {
                 theField.place(newShark, newSharkLoc);
 
             }
-    
+            return;
         }
+        isAlive = false;
+        theField.place(null, location);
     }
 
     @Override

@@ -65,5 +65,20 @@ public class SardineTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of breed method, of class Sardine.
+     */
+    @Test
+    public void testBreed() {
+        System.out.println("breed");
+        Field field = null;
+        Sardine instance = null;
+        Location expResult = null;
+        Location result = instance.breed(field);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }

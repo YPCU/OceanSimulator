@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package OceanSimulator;
 
 import java.util.Iterator;
@@ -21,8 +20,8 @@ public class Sardine extends Fish {
 
     @Override
     public void act(Field theField) {
-    if (isAlive){
-     Location loc = theField.freeAdjacentLocation(location);
+        if (isAlive) {
+            Location loc = theField.freeAdjacentLocation(location);
             // implementing behaviour to occupy prey's location.
             Location prey = findFood(theField, location);
             if (prey != null) {
@@ -35,52 +34,51 @@ public class Sardine extends Fish {
                 setLocation(loc);
                 theField.place(this, loc);
             }
-     incrementAge();
-     // to implement breeding behaviour
-        Location newSardineLoc = breed(theField);
+            incrementAge();
+            // to implement breeding behaviour
+            Location newSardineLoc = breed(theField);
             if (newSardineLoc != null) {
-               int x= newSardineLoc.getRow();
+                int x = newSardineLoc.getRow();
                 int y = newSardineLoc.getCol();
                 Sardine newSardine = new Sardine(x, y, false);
                 newSardine.setLocation(newSardineLoc);
                 theField.place(newSardine, newSardineLoc);
-
             }
-    }
-     
-  }
+        return;
+        }
+        isAlive = false;
+        theField.place(null, location);
 
-   
+    }
 
     @Override
     public Location findFood(Field field, Location location) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Iterator adjacentLocations = field.adjacentLocations(location);
         while (adjacentLocations.hasNext()) {
-        Location next = (Location) adjacentLocations.next();
-        Creature creature = field.getObjectAt(next);
-        if(creature instanceof Plankton){
-            field.getObjectAt(next).isAlive = false;
-            foodLevel += ModelConstants.PLANKTON_NUTRITIONAL_VALUE;
-            return next;
-        } 
+            Location next = (Location) adjacentLocations.next();
+            Creature creature = field.getObjectAt(next);
+            if (creature instanceof Plankton) {
+                field.getObjectAt(next).isAlive = false;
+                foodLevel += ModelConstants.PLANKTON_NUTRITIONAL_VALUE;
+                return next;
+            }
         }
         return null;
     }
 
-     @Override
+    @Override
     public Location breed(Field field) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Random rand = RandomGenerator.getRandom();
-        if(age >= ModelConstants.SARDINE_BREEDING_AGE && rand.nextDouble() < ModelConstants.SARDINE_BREEDING_PROB){
-                // Location for new-born creature
-                Location babyLocation = field.freeAdjacentLocation(location);
-                if(babyLocation != null){
-                    return babyLocation;
-                }
+        if (age >= ModelConstants.SARDINE_BREEDING_AGE && rand.nextDouble() < ModelConstants.SARDINE_BREEDING_PROB) {
+            // Location for new-born creature
+            Location babyLocation = field.freeAdjacentLocation(location);
+            if (babyLocation != null) {
+                return babyLocation;
             }
+        }
         return null;
     }
 
-    
 }

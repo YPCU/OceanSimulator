@@ -144,15 +144,15 @@ public class CreatureTest {
     }
 
     /**
-     * Test of killIfDead method, of class Creature.
+     * Test of breed method, of class Creature.
      */
     @Test
-    public void testKillIfDead() {
-        System.out.println("killIfDead");
+    public void testBreed() {
+        System.out.println("breed");
         Field field = null;
         Creature instance = null;
-        boolean expResult = false;
-        boolean result = instance.killIfDead(field);
+        Location expResult = null;
+        Location result = instance.breed(field);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -165,6 +165,10 @@ public class CreatureTest {
         }
 
         public void act(Field theField) {
+        }
+
+        public Location breed(Field field) {
+            return null;
         }
     }
     

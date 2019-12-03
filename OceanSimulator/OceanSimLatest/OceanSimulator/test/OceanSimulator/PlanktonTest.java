@@ -43,9 +43,24 @@ public class PlanktonTest {
     @Test
     public void testAct() {
         System.out.println("act");
-        Field theField = null;
+        Field field = null;
         Plankton instance = null;
-        instance.act(theField);
+        instance.act(field);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of breed method, of class Plankton.
+     */
+    @Test
+    public void testBreed() {
+        System.out.println("breed");
+        Field field = null;
+        Plankton instance = null;
+        Location expResult = null;
+        Location result = instance.breed(field);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
