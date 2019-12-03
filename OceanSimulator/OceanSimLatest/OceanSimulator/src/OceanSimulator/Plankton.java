@@ -31,9 +31,9 @@ public class Plankton extends Creature {
                 newPlankton.setLocation(newPlanktonLoc);
                 field.place(newPlankton, newPlanktonLoc);
             }
-
+            return;
         }
-
+        
     }
 
     @Override

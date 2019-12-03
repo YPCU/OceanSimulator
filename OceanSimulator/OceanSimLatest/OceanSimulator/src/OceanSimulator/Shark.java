@@ -20,6 +20,7 @@ public class Shark extends Fish {
 
     @Override
     public void act(Field theField) {
+        incrementAge();
         if (isAlive) {
             Location loc = theField.freeAdjacentLocation(location);
             // implementing behaviour to occupy prey's location.
@@ -33,8 +34,11 @@ public class Shark extends Fish {
                 theField.place(null, location);
                 setLocation(loc);
                 theField.place(this, loc);
+            } else{
+                // they can't find food and have no free space
+                isAlive = false;
+                return;
             }
-            incrementAge();
                  // to implement breeding behaviour
         Location newSharkLoc = breed(theField);
             if (newSharkLoc != null) {
@@ -48,7 +52,6 @@ public class Shark extends Fish {
             return;
         }
         
-        isAlive = false;
         theField.place(null, location);
     }
 

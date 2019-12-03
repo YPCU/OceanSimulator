@@ -75,7 +75,8 @@ public class Simulator {
             }
         }
     }
-        /*
+
+    /*
      for(int row =0;row<x;++row){
      for(int col=0;col<y;++col)
         {
@@ -99,18 +100,23 @@ public class Simulator {
    
     /**
      * @start starts the simulation 
-    */
+     */
     public void startSimulation() {
         populate();
         view.showStatus(0, field);
-        simulate(1000);
+        simulate(ModelConstants.SIM_LENGTH);
     }
 
     /**
      * Simulates a single time jump in the simulation
      */
     public void simulateOneStep() {
-        
+
+        try {
+            Thread.sleep(40);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         Collections.shuffle(creatures, RandomGenerator.getRandom());
         for (int i = 0; i < creatures.size(); i++) {
@@ -139,9 +145,5 @@ public class Simulator {
         Simulator simulator = new Simulator(50, 50);
         simulator.startSimulation();
     }
-
-    
-    
-   
 
 }
