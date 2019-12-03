@@ -47,6 +47,7 @@ public class Shark extends Fish {
             }
             return;
         }
+        
         isAlive = false;
         theField.place(null, location);
     }
@@ -59,7 +60,7 @@ public class Shark extends Fish {
             Location next = (Location) adjacentLocations.next();
             Creature creature = field.getObjectAt(next);
             if (creature instanceof Sardine) {
-                creature.isAlive = false;
+                field.getObjectAt(next).isAlive = false;
                 foodLevel += ModelConstants.SARDINE_NUTRITIONAL_VALUE;
                 return next;
             }

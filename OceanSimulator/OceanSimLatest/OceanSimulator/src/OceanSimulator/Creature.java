@@ -27,6 +27,7 @@ public abstract class Creature {
     public Creature(int x, int y, boolean randAge) {
         location = new Location(x, y);
         Random rand = new Random();
+        isAlive =true;
         
         
         if (this instanceof Plankton && randAge) {
@@ -39,7 +40,6 @@ public abstract class Creature {
             age = rand.nextInt(ModelConstants.SHARK_MAX_AGE);
         } else {
             age = 0;
-            isAlive = true;
         }
         
         

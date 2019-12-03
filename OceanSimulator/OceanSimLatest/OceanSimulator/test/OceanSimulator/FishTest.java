@@ -41,66 +41,17 @@ public class FishTest {
      * Test of getFoodLevel method, of class Fish.
      */
     @Test
-    public void testGetFoodLevel() {
-        System.out.println("getFoodLevel");
-        Fish instance = null;
-        int expResult = 0;
-        int result = instance.getFoodLevel();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testCreateFish() {
+        System.out.println("testCreateFish");
+        Shark shark = new Shark(1, 1, true);
+        assertTrue("Dead Shark"+ shark.isAlive(), shark.isAlive());
+        shark = new Shark(1, 1, false);
+        assertTrue("Dead rand age Shark"+ shark.isAlive(), shark.isAlive());
+        Sardine sardine = new Sardine(1, 1, true);
+        assertTrue("Dead Sardine" + sardine.isAlive(), sardine.isAlive());
     }
 
-    /**
-     * Test of setFoodLevel method, of class Fish.
-     */
-    @Test
-    public void testSetFoodLevel() {
-        System.out.println("setFoodLevel");
-        int foodLevel = 0;
-        Fish instance = null;
-        instance.setFoodLevel(foodLevel);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of makeHungry method, of class Fish.
-     */
-    @Test
-    public void testMakeHungry() {
-        System.out.println("makeHungry");
-        Fish instance = null;
-        instance.makeHungry();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of findFood method, of class Fish.
-     */
-    @Test
-    public void testFindFood() {
-        System.out.println("findFood");
-        Field theField = null;
-        Location location = null;
-        Fish instance = null;
-        Location expResult = null;
-        Location result = instance.findFood(theField, location);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    public class FishImpl extends Fish {
-
-        public FishImpl() {
-            super(0, 0, false);
-        }
-
-        public Location findFood(Field theField, Location location) {
-            return null;
-        }
-    }
+    
+    
     
 }

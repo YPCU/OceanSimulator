@@ -40,49 +40,13 @@ public class SimulatorTest {
     /**
      * Test of populate method, of class Simulator.
      */
+    
     @Test
-    public void testPopulate() {
-        System.out.println("populate");
-        Simulator instance = null;
-        instance.populate();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testFieldBuild() {
+        System.out.println("Field Build");
+        Simulator instance = new Simulator(50,50);
+        assertNotNull("Field not initialised", instance);
     }
-
-    /**
-     * Test of startSimulation method, of class Simulator.
-     */
-    @Test
-    public void testStartSimulation() {
-        System.out.println("startSimulation");
-        Simulator instance = null;
-        instance.startSimulation();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of simulateOneStep method, of class Simulator.
-     */
-    @Test
-    public void testSimulateOneStep() {
-        System.out.println("simulateOneStep");
-        Simulator instance = null;
-        instance.simulateOneStep();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of main method, of class Simulator.
-     */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Simulator.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
     
 }
