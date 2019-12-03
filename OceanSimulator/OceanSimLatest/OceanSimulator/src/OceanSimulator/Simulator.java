@@ -116,6 +116,7 @@ public class Simulator {
         } catch (InterruptedException ex) {
             Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         Collections.shuffle(creatures, RandomGenerator.getRandom());
         for (int i = 0; i < creatures.size(); i++) {
             Creature creature = creatures.get(i);
@@ -146,5 +147,6 @@ public class Simulator {
 
     
     
+   
 
 }

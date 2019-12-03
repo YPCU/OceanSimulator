@@ -38,12 +38,13 @@ public class ModelConstants {
     public static final int SHARK_BREEDING_AGE = 25;
     public static final int PLANKTON_BREEDING_AGE = 15;
 
-    // defines probability of sardine breeding in each timestep    
-    public static final double PROB_OF_BREEDING_SARDINE = 0.5; 
-    // defines probability of shark breeding in each timestep
-    public static final double PROB_OF_BREEDING_SHARK_ = 0.2; 
     // defines probability of plankton breeding in each timestep
-    public static final double PROB_OF_BREEDING_PLANKTON = 0.8; 
+    public static final double PLANKTON_BREEDING_PROB = 0.8; 
+    // defines probability of sardine breeding in each timestep    
+    public static final double SARDINE_BREEDING_PROB = 0.5; 
+    // defines probability of shark breeding in each timestep
+    public static final double SHARK_BREEDING_PROB = 0.2; 
+    
 }
            
      

@@ -6,6 +6,7 @@
 package OceanSimulator;
 
 import java.util.Iterator;
+import java.util.Random;
 
 /**
  *
@@ -19,25 +20,34 @@ public class Shark extends Fish {
 
     @Override
     public void act(Field theField) {
-        //killIfDead(theField) is executed in the condition 
-//        if (killIfDead(theField)) {
-//            return;
-//        }
-        Location loc = theField.freeAdjacentLocation(location);
-        // implementing behaviour to occupy prey's location.
-        Location prey = findFood(theField, location);
-        if (prey != null) {
-            loc = prey;
-        } else {
-            makeHungry();
-        }
-        if (!(loc == null)) {
-            theField.place(null, location);
-            setLocation(loc);
-            theField.place(this, location);
+        if (isAlive) {
+            Location loc = theField.freeAdjacentLocation(location);
+            // implementing behaviour to occupy prey's location.
+            Location prey = findFood(theField, location);
+            if (prey != null) {
+                loc = prey;
+            } else {
+                makeHungry();
+            }
+            if (!(loc == null)) {
+                theField.place(null, location);
+                setLocation(loc);
+                theField.place(this, location);
 
+            }
+            incrementAge();
+                 // to implement breeding behaviour
+        Location newSharkLoc = breed(theField);
+            if (newSharkLoc != null) {
+               int x= newSharkLoc.getRow();
+                int y = newSharkLoc.getCol();
+                Shark newShark = new Shark(x, y, false);
+                newShark.setLocation(newSharkLoc);
+                theField.place(newShark, newSharkLoc);
+
+            }
+    
         }
-        incrementAge();
     }
 
     @Override
@@ -56,9 +66,21 @@ public class Shark extends Fish {
         return null;
     }
 
-    @Override
-    public Creature breed(Field field) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     @Override
+    public Location breed(Field field) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Random rand = RandomGenerator.getRandom();
+        if(age >= ModelConstants.SHARK_BREEDING_AGE && rand.nextDouble() < ModelConstants.SHARK_BREEDING_PROB){
+                // Location for new-born creature
+                Location babyLocation = field.freeAdjacentLocation(location);
+                if(babyLocation != null){
+                    return babyLocation;
+                }
+            }
+        return null;
     }
+
+   
+    
 
 }

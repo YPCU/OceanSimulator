@@ -89,13 +89,13 @@ public abstract class Creature {
     /*
         true means creature killed.
      */
-    public boolean killIfDead(Field field) {
-        if (!this.isAlive) {
-            field.place(null, location);
-            return true;
-        }
-        return false;
-    }
+//    public boolean killIfDead(Field field) {
+//        if (!this.isAlive) {
+//            field.place(null, location);
+//            return true;
+//        }
+//        return false;
+//    }
     
   //BREEDING needs checking
 
@@ -122,14 +122,7 @@ public abstract class Creature {
     
    */
     
-    public Creature breed(Field field) {
-        Random rand = RandomGenerator.getRandom();
-        if (Creature.age >= ModelConstants.BREEDING_AGE && rand.nextDouble() <= ModelConstants.PROB_OF_BREEDING) {
-            Location loc = field.freeAdjacentLocation(location);
-            if (!(loc == null)) {
-
-            }
-        }
-        return null;
-    }
+    public abstract Location breed(Field field) ;
+    //although all creatures breeds but the type of baby are of the same type,
+    //therefore, it is implememnt as abstract method here.
 }

@@ -6,6 +6,8 @@
 
 package OceanSimulator;
 
+import java.util.Random;
+
 /**
  *
  * @author 180127003
@@ -18,15 +20,42 @@ public class Plankton extends Creature {
     }
 
     @Override
-    public void act(Field theField) {
-    // killIfDead(theField) is executed in the condition 
-    if(killIfDead(theField)) return;
-     incrementAge();
-    }
+    public void act(Field field) {
+        if(isAlive){
+        incrementAge();
+        // to implement breeding behaviour
+        Location newPlanktonLoc = breed(field);
+            if (newPlanktonLoc != null) {
+               int x= newPlanktonLoc.getRow();
+                int y = newPlanktonLoc.getCol();
+                Plankton newPlankton = new Plankton(x, y, false);
+                newPlankton.setLocation(newPlanktonLoc);
+                field.place(newPlankton, newPlanktonLoc);
 
+            }
+        
+        
+        
+        }
+
+    }
+    
     @Override
-    public Creature breed(Field field) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Location breed(Field field) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Random rand = RandomGenerator.getRandom();
+        if(age >= ModelConstants.PLANKTON_BREEDING_AGE && rand.nextDouble() < ModelConstants.PLANKTON_BREEDING_PROB){
+                // Location for new-born creature
+                Location babyLocation = field.freeAdjacentLocation(location);
+                if(babyLocation != null){
+                    return babyLocation;
+//                    int x= babyLocation.getRow();
+//                    int y = babyLocation.getCol();
+//                    Plankton newPlankton = new Plankton(x, y, false);
+//                    return newPlankton;
+                }
+            }
+        return null;
     }
 
 
