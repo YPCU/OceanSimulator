@@ -22,16 +22,19 @@ public class Sardine extends Fish {
     @Override
     public void act(Field theField) {
     if (isAlive){
-      Location loc = theField.freeAdjacentLocation(location);
-      // implementing behaviour to occupy prey's location.
-      Location prey= findFood (theField, location);
-      if(prey != null) loc = prey;
-      else{makeHungry();}
-      if(!(loc==null)){
-       theField.place(null, location);
-       setLocation(loc);
-       theField.place(this, location);
-    }
+     Location loc = theField.freeAdjacentLocation(location);
+            // implementing behaviour to occupy prey's location.
+            Location prey = findFood(theField, location);
+            if (prey != null) {
+                loc = prey;
+            } else {
+                makeHungry();
+            }
+            if (loc != null) {
+                theField.place(null, location);
+                setLocation(loc);
+                theField.place(this, location);
+            }
      incrementAge();
      // to implement breeding behaviour
         Location newSardineLoc = breed(theField);

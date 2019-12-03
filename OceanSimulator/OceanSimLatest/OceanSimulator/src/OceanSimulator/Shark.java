@@ -29,11 +29,10 @@ public class Shark extends Fish {
             } else {
                 makeHungry();
             }
-            if (!(loc == null)) {
+            if (loc != null) {
                 theField.place(null, location);
                 setLocation(loc);
                 theField.place(this, location);
-
             }
             incrementAge();
                  // to implement breeding behaviour
