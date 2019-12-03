@@ -17,6 +17,7 @@ public abstract class Creature {
     protected Location location;
     protected int age;
     protected boolean isAlive;
+   
 
     /**
      * @param int x = position of creature
@@ -26,7 +27,8 @@ public abstract class Creature {
     public Creature(int x, int y, boolean randAge) {
         location = new Location(x, y);
         Random rand = new Random();
-
+        
+        
         if (this instanceof Plankton && randAge) {
             age = rand.nextInt(ModelConstants.PLANKTON_MAX_AGE);
         }
@@ -39,6 +41,8 @@ public abstract class Creature {
             age = 0;
             isAlive = true;
         }
+        
+        
     }
 
     //location
@@ -92,15 +96,17 @@ public abstract class Creature {
         }
         return false;
     }
+    
+  //BREEDING needs checking
 
-    /* BREEDING KUKKU COME BACK TO
-    public void act(Location location) {
+    
+  /*  public void act(Location location) {
         if (isAlive) {
-            if (age < ModelConstants.BREEDING_AGE) {
+            if (age < ModelConstants.BREEDING_AGE && rand < probOfBreeding) {
                 Creature fish = new Shark(location.getRow(), location.getCol(), true);
                 fish.setLocation(location);
             }
-            if (ok = findFood()) {
+            if (location findFood()) {
 //move to food location
             } else {
                 energy = cost;
@@ -111,5 +117,19 @@ public abstract class Creature {
             isAlive = false;
         }
     }
-    */
+
+    //finding food
+    
+   */
+    
+    public Creature breed(Field field) {
+        Random rand = RandomGenerator.getRandom();
+        if (Creature.age >= ModelConstants.BREEDING_AGE && rand.nextDouble() <= ModelConstants.PROB_OF_BREEDING) {
+            Location loc = field.freeAdjacentLocation(location);
+            if (!(loc == null)) {
+
+            }
+        }
+        return null;
+    }
 }

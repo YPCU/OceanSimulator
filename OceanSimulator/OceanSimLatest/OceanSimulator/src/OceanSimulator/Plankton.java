@@ -24,5 +24,10 @@ public class Plankton extends Creature {
      incrementAge();
     }
 
+    @Override
+    public Creature breed(Field field) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 }
