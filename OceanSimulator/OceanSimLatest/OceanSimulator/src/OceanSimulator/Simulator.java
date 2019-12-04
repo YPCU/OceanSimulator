@@ -23,6 +23,8 @@ public class Simulator {
     public static SimulatorView view;
     public static ArrayList<Creature> creatures;
     public static int currentStep;
+    private final int simLength = ModelConstants.SIM_LENGTH;
+//    private final int simLength = 17;
 
     public Simulator(int row, int col) {
         //RandomGenerator.initialiseWithSeed(4);
@@ -40,7 +42,11 @@ public class Simulator {
         view.setColor(Shark.class, Color.red);
         currentStep = 0;
 
-        startSimulation();
+        // Mistake below startSimulation(); repeated call causing simulator 
+        // twice when main method is called.
+        //Constructor build the class object and startSimulator invoke as 
+        //an action in main method.
+        //startSimulation();
     }
 
     /**
@@ -104,29 +110,28 @@ public class Simulator {
     public void startSimulation() {
         populate();
         view.showStatus(0, field);
-        simulate(ModelConstants.SIM_LENGTH);
+        simulate(simLength);
     }
 
     /**
      * Simulates a single time jump in the simulation
      */
-    public void simulateOneStep() {
+    private void simulateOneStep() {
 
         try {
-            Thread.sleep(10);
+            Thread.sleep(50);
         } catch (InterruptedException ex) {
             Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-
+ 
         Collections.shuffle(creatures, RandomGenerator.getRandom());
         for (int i = 0; i < creatures.size(); i++) {
             Creature creature = creatures.get(i);
             creature.act(field);
-        }
+            }
         currentStep++;
         view.showStatus(currentStep, field);
-
     }
 
     /**
@@ -134,11 +139,22 @@ public class Simulator {
      * @param steps the number of time steps to go through
      */
     private void simulate(int numOfStep) {
+//        while(currentStep < numOfStep) {
+//            if (view.isViable(field) ) {
+//                simulateOneStep();
+//                System.out.println(currentStep);
+//            } else {
+//                break;
+//            }
+//        }
+        
+        
         for (int i = 0; i < numOfStep; i++) {
-            if (!view.isViable(field)) {
+            if (view.isViable(field) ) {
+                simulateOneStep();
+            } else {
                 break;
             }
-            simulateOneStep();
         }
     }
 
