@@ -32,7 +32,7 @@ public abstract class Fish extends Creature{
     public void makeHungry() {
     foodLevel--;
     if(foodLevel <= 0) {
-        isAlive= false;
+        isAlive = false;
         }
     }
     

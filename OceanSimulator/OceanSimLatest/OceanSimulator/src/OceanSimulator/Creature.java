@@ -26,7 +26,7 @@ public abstract class Creature {
      */
     public Creature(int x, int y, boolean randAge) {
         location = new Location(x, y);
-        Random rand = new Random();
+        Random rand = RandomGenerator.getRandom();
         isAlive =true;
         
         
@@ -76,14 +76,13 @@ public abstract class Creature {
 
     public void incrementAge() {
         age++;
-        if (this instanceof Shark && age == ModelConstants.SHARK_MAX_AGE) {
+        if (this instanceof Shark && age >= ModelConstants.SHARK_MAX_AGE) {
             setIsAlive(false);
-        } else if (this instanceof Sardine && age == ModelConstants.SARDINE_MAX_AGE) {
+        } else if (this instanceof Sardine && age >= ModelConstants.SARDINE_MAX_AGE) {
             setIsAlive(false);
-        } else if (this instanceof Plankton && age == ModelConstants.PLANKTON_MAX_AGE) {
+        } else if (this instanceof Plankton && age >= ModelConstants.PLANKTON_MAX_AGE) {
             setIsAlive(false);
         }
-
     }
 
     /*

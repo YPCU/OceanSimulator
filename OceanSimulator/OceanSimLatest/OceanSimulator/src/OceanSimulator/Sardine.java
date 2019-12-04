@@ -50,8 +50,6 @@ public class Sardine extends Fish {
             }
             return;
         }
-
-        isAlive = false;
         theField.place(null, location);
 
     }

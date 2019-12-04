@@ -25,7 +25,7 @@ public class Simulator {
     public static int currentStep;
 
     public Simulator(int row, int col) {
-        RandomGenerator.initialiseWithSeed(4);
+        //RandomGenerator.initialiseWithSeed(4);
         Random rand = RandomGenerator.getRandom();
 
         creatures = new ArrayList<Creature>();
@@ -113,10 +113,11 @@ public class Simulator {
     public void simulateOneStep() {
 
         try {
-            Thread.sleep(40);
+            Thread.sleep(10);
         } catch (InterruptedException ex) {
             Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
 
         Collections.shuffle(creatures, RandomGenerator.getRandom());
         for (int i = 0; i < creatures.size(); i++) {

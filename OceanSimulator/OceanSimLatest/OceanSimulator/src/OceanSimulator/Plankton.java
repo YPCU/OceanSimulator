@@ -20,8 +20,8 @@ public class Plankton extends Creature {
 
     @Override
     public void act(Field field) {
+        incrementAge();
         if (isAlive) {
-            incrementAge();
             // to implement breeding behaviour
             Location newPlanktonLoc = breed(field);
             if (newPlanktonLoc != null) {
@@ -33,7 +33,7 @@ public class Plankton extends Creature {
             }
             return;
         }
-        
+        field.place(null, location);
     }
 
     @Override
