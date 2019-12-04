@@ -50,7 +50,7 @@ public class Sardine extends Fish {
             }
             return;
         }
-        theField.place(null, location);
+//        theField.place(null, location);
 
     }
 

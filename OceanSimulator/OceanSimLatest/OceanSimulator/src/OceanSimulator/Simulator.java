@@ -25,6 +25,7 @@ public class Simulator {
     public static int currentStep;
     private final int simLength = ModelConstants.SIM_LENGTH;
 //    private final int simLength = 17;
+            boolean show = false;
 
     public Simulator(int row, int col) {
         //RandomGenerator.initialiseWithSeed(4);
@@ -117,7 +118,18 @@ public class Simulator {
      * Simulates a single time jump in the simulation
      */
     private void simulateOneStep() {
+        
+        if (currentStep % (simLength/4) == 0) {
 
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        /*
+        // Original code:
         try {
             Thread.sleep(50);
         } catch (InterruptedException ex) {
@@ -129,6 +141,49 @@ public class Simulator {
         for (int i = 0; i < creatures.size(); i++) {
             Creature creature = creatures.get(i);
             creature.act(field);
+            }
+        currentStep++;
+        view.showStatus(currentStep, field);
+        */
+        
+        
+        
+       if(show) System.out.println("___________________________________"+ (currentStep + 1 )+"___________________________________\t");
+       if(show) show = false;
+        Collections.shuffle(creatures, RandomGenerator.getRandom());
+        for (int i = 0; i < creatures.size(); i++) {
+            Creature creature = creatures.get(i);
+            creature.act(field);
+            if( !creature.isAlive() ) {
+                show = true;
+                System.out.print("Life: "+creature.isAlive() + "\t || Age: "+creature.age);
+                if(field.getObjectAt(creature.getLocation()) != null){
+                    System.out.print("\t Location: "+creature.getLocation() +"\t||\t"+ field.getObjectAt(creature.getLocation()));
+                    if(creature instanceof Shark ){
+                        Shark shark = (Shark) creature;
+                        System.out.print("\t FoodLevel: "+ shark.foodLevel + "\t||\t"+ field.getObjectAt(creature.getLocation()));
+                    }
+                    if(creature instanceof Sardine){
+                        Sardine sardine = (Sardine) creature;
+                        System.out.print("\t FoodLevel: "+ sardine.foodLevel +"\t||\t"+ field.getObjectAt(creature.getLocation()));
+                    }
+                    field.place(null, creature.getLocation());
+                }
+                creatures.remove(i);
+                i--;
+                System.out.println();
+            }
+            
+        }
+        System.out.println(currentStep);
+        if(currentStep > 145){
+                if(creatures.isEmpty()) {
+                    System.out.println("Creatures is empty");
+                    field.clear();
+                }
+                else{
+                    for(Creature Ecreature : creatures) System.out.println(Ecreature);
+                }
             }
         currentStep++;
         view.showStatus(currentStep, field);

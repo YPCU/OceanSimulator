@@ -33,7 +33,7 @@ public class Plankton extends Creature {
             }
             return;
         }
-        field.place(null, location);
+//        field.place(null, location);
     }
 
     @Override

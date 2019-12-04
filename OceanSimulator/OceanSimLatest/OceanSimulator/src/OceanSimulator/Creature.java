@@ -75,7 +75,7 @@ public abstract class Creature {
     }
 
     public void incrementAge() {
-        age++;
+        age ++;
         if (this instanceof Shark && age >= ModelConstants.SHARK_MAX_AGE) {
             setIsAlive(false);
         } else if (this instanceof Sardine && age >= ModelConstants.SARDINE_MAX_AGE) {

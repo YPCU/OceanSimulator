@@ -52,7 +52,7 @@ public class Shark extends Fish {
             return;
         }
         
-        theField.place(null, location);
+//        theField.place(null, location);
     }
 
     @Override
