@@ -49,22 +49,7 @@ public class ModelConstants {
     public static  double SARDINE_BREEDING_PROB = 0.5;
     // defines probability of shark breeding in each timestep
     public static  double SHARK_BREEDING_PROB = 0.2;
-    
-//    public static void call(int value, String fieldName){
-//        java.lang.reflect.Field field = null;
-//        try {
-//            field = ModelConstants.class.getField(fieldName);
-//        } catch (NoSuchFieldException ex) {
-//            Logger.getLogger(ModelConstants.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (SecurityException ex) {
-//            Logger.getLogger(ModelConstants.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        if (field != null){
-//            Object p = null;
-//            //field.set(ModelConstants.this, value);
-//        }
-//        PLANKTON_MAX_AGE = value;
-//    }
+
 
     public static void setDEFAULT_DEPTH(int DEFAULT_DEPTH) {
         ModelConstants.DEFAULT_DEPTH = DEFAULT_DEPTH;

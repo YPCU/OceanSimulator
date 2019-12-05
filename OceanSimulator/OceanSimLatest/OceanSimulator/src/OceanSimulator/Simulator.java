@@ -82,26 +82,9 @@ public class Simulator {
         }
     }
 
-    /*
-     for(int row =0;row<x;++row){
-     for(int col=0;col<y;++col)
-        {
-     if (rand < ModelConstants.PLANKTON_CREATE){
-     field[row][col]= new Plankton ();
-     }
-     else if (PLANKTON.CREATE < rand && 
-     rand <PLANKTON.CREATE+ SHARK.CREATE>){
-         field [row][col]= new Shark ();
-     }
-     else if (Plankton+Shark < rand && rand < Plankton+Shark+Sardine){
-     field[row][col]= new Sardine ();
-     }
-     else{}
-     }}
-     *
-    }
+
     
-    *\
+
     
    
     /**
@@ -158,15 +141,6 @@ public class Simulator {
      * @param steps the number of time steps to go through
      */
     private void simulate(int numOfStep) {
-//        while(currentStep < numOfStep) {
-//            if (view.isViable(field) ) {
-//                simulateOneStep();
-//                System.out.println(currentStep);
-//            } else {
-//                break;
-//            }
-//        }
-        
         
         for (int i = 0; i < numOfStep; i++) {
             if (view.isViable(field) ) {

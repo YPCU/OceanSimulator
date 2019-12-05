@@ -85,41 +85,7 @@ public abstract class Creature {
         }
     }
 
-    /*
-        true means creature killed.
-     */
-//    public boolean killIfDead(Field field) {
-//        if (!this.isAlive) {
-//            field.place(null, location);
-//            return true;
-//        }
-//        return false;
-//    }
-   
-  //BREEDING needs checking
-    
-    
-  /*  public void act(Location location) {
-        if (isAlive) {
-            if (age < ModelConstants.BREEDING_AGE && rand < probOfBreeding) {
-                Creature fish = new Shark(location.getRow(), location.getCol(), true);
-                fish.setLocation(location);
-            }
-            if (location findFood()) {
-//move to food location
-            } else {
-                energy = cost;
-                if (findFreeSpace()) {
-//move to free space
-                }
-            }
-            isAlive = false;
-        }
-    }
 
-    //finding food
-    
-   */
     
     public abstract Location breed(Field field) ;
     //although all creatures breeds but the type of baby are of the same type,
