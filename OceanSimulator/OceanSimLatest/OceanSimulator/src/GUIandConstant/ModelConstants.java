@@ -15,39 +15,39 @@ import java.util.logging.Logger;
 public class ModelConstants {
 
     //declearing the default depth of the Ocean field.
-    public static int DEFAULT_DEPTH = 50;
+    private static int DEFAULT_DEPTH = 100;
     //declearing the default width of the Ocean field.
-    public static int DEFAULT_WIDTH = 50;
-    public static int SIM_LENGTH = 1000;
+    private static int DEFAULT_WIDTH = 100;
+    private static int SIM_LENGTH = 1000;
 
     //declearing the plankton generating probability 
-    public static double PLANKTON_CREATE_PROB = 0.7;
+    private static double PLANKTON_CREATE_PROB = 0.7;
     //declearing the sardine generating probability 
-    public static double SARDINE_CREATE_PROB = 0.1;
+    private static double SARDINE_CREATE_PROB = 0.1;
     //declearing the shark generating probability 
-    public static double SHARK_CREATE_PROB = 0.05;
+    private static double SHARK_CREATE_PROB = 0.05;
 
     //declearing the max age that plankton can live up to.
-    public static int PLANKTON_MAX_AGE = 100;
+    private static int PLANKTON_MAX_AGE = 100;
     //declearing the max age that sardine can live up to.
-    public static int SARDINE_MAX_AGE = 75;
+    private static int SARDINE_MAX_AGE = 75;
     //declearing the max age that shark can live up to.
-    public static int SHARK_MAX_AGE = 150;
+    private static int SHARK_MAX_AGE = 150;
 
-    public static int SARDINE_NUTRITIONAL_VALUE = 14;
-    public static int PLANKTON_NUTRITIONAL_VALUE = 4;
+    private static int SARDINE_NUTRITIONAL_VALUE = 14;
+    private static int PLANKTON_NUTRITIONAL_VALUE = 4;
 
     //declaring the minimum breeding age
-    public static int SARDINE_BREEDING_AGE = 12;
-    public static int SHARK_BREEDING_AGE = 25;
-    public static int PLANKTON_BREEDING_AGE = 0;
+    private static int SARDINE_BREEDING_AGE = 12;
+    private static int SHARK_BREEDING_AGE = 25;
+    private static int PLANKTON_BREEDING_AGE = 0;
 
     // defines probability of plankton breeding in each timestep
-    public static double PLANKTON_BREEDING_PROB = 0.8;
+    private static double PLANKTON_BREEDING_PROB = 0.8;
     // defines probability of sardine breeding in each timestep    
-    public static double SARDINE_BREEDING_PROB = 0.5;
+    private static double SARDINE_BREEDING_PROB = 0.5;
     // defines probability of shark breeding in each timestep
-    public static double SHARK_BREEDING_PROB = 0.2;
+    private static double SHARK_BREEDING_PROB = 0.2;
 
     // All setter methods are without modifier, which gain access to the class 
     //within the same package, but not to all the classes in the project.
@@ -120,4 +120,76 @@ public class ModelConstants {
         ModelConstants.SHARK_BREEDING_PROB = SHARK_BREEDING_PROB;
     }
 
+    // All getter methods are with public modifier, which gain access to the  
+    //value of the field to all the classes in the project.
+
+    public static int getDEFAULT_DEPTH() {
+        return DEFAULT_DEPTH;
+    }
+
+    public static int getDEFAULT_WIDTH() {
+        return DEFAULT_WIDTH;
+    }
+
+    public static int getSIM_LENGTH() {
+        return SIM_LENGTH;
+    }
+
+    public static double getPLANKTON_CREATE_PROB() {
+        return PLANKTON_CREATE_PROB;
+    }
+
+    public static double getSARDINE_CREATE_PROB() {
+        return SARDINE_CREATE_PROB;
+    }
+
+    public static double getSHARK_CREATE_PROB() {
+        return SHARK_CREATE_PROB;
+    }
+
+    public static int getPLANKTON_MAX_AGE() {
+        return PLANKTON_MAX_AGE;
+    }
+
+    public static int getSARDINE_MAX_AGE() {
+        return SARDINE_MAX_AGE;
+    }
+
+    public static int getSHARK_MAX_AGE() {
+        return SHARK_MAX_AGE;
+    }
+
+    public static int getSARDINE_NUTRITIONAL_VALUE() {
+        return SARDINE_NUTRITIONAL_VALUE;
+    }
+
+    public static int getPLANKTON_NUTRITIONAL_VALUE() {
+        return PLANKTON_NUTRITIONAL_VALUE;
+    }
+
+    public static int getSARDINE_BREEDING_AGE() {
+        return SARDINE_BREEDING_AGE;
+    }
+
+    public static int getSHARK_BREEDING_AGE() {
+        return SHARK_BREEDING_AGE;
+    }
+
+    public static int getPLANKTON_BREEDING_AGE() {
+        return PLANKTON_BREEDING_AGE;
+    }
+
+    public static double getPLANKTON_BREEDING_PROB() {
+        return PLANKTON_BREEDING_PROB;
+    }
+
+    public static double getSARDINE_BREEDING_PROB() {
+        return SARDINE_BREEDING_PROB;
+    }
+
+    public static double getSHARK_BREEDING_PROB() {
+        return SHARK_BREEDING_PROB;
+    }
+    
+    
 }

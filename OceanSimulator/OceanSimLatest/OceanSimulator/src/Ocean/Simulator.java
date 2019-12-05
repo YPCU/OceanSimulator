@@ -24,18 +24,19 @@ public class Simulator {
     public static SimulatorView view;
     public static ArrayList<Creature> creatures;
     public static int currentStep;
-    private final int simLength = ModelConstants.SIM_LENGTH;
+    private final int simLength = ModelConstants.getSIM_LENGTH();
+
 //    private final int simLength = 17;
 
     public Simulator(int row, int col) {
-        //RandomGenerator.initialiseWithSeed(4);
+        RandomGenerator.initialiseWithSeed(44);
         Random rand = RandomGenerator.getRandom();
 
         creatures = new ArrayList<Creature>();
         if (row > 0 && col > 0) {
             field = new Field(row, col);
         } else {
-            field = new Field(ModelConstants.DEFAULT_DEPTH, ModelConstants.DEFAULT_WIDTH);
+            field = new Field(ModelConstants.getDEFAULT_DEPTH(), ModelConstants.getDEFAULT_WIDTH());
         }
         view = new SimulatorView(row, col);
         view.setColor(Plankton.class, Color.green);
@@ -49,7 +50,8 @@ public class Simulator {
         //an action in main method.
         //startSimulation();
     }
-
+    
+    
     /**
      * @populate initialise the creatures to the field at the beginning
      */
@@ -58,9 +60,9 @@ public class Simulator {
         field.clear();
         int x = field.getWidth();
         int y = field.getDepth();
-        double sharkProb = ModelConstants.SHARK_CREATE_PROB;
-        double sardineProb = ModelConstants.SARDINE_CREATE_PROB;
-        double planktonProb = ModelConstants.PLANKTON_CREATE_PROB;
+        double sharkProb = ModelConstants.getSHARK_CREATE_PROB();
+        double sardineProb = ModelConstants.getSARDINE_CREATE_PROB();
+        double planktonProb = ModelConstants.getPLANKTON_CREATE_PROB();
 
         for (int row = 0; row < x; ++row) {
             for (int col = 0; col < y; ++col) {
@@ -83,10 +85,6 @@ public class Simulator {
         }
     }
 
-
-    
-
-    
    
     /**
      * @start starts the simulation 
@@ -102,8 +100,8 @@ public class Simulator {
      */
     private void simulateOneStep() {
         
-        /*
-        int stopTime = 100;
+        
+        int stopTime = 0;
         if (stopTime != 0 && currentStep % (simLength/stopTime) == 0) {
 
             try {
@@ -112,7 +110,7 @@ public class Simulator {
                 Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-       */
+       
 
         ReinitialiseField(field);
         
@@ -126,6 +124,17 @@ public class Simulator {
             tellCreature(creature);
             
         }
+        creatures.clear();
+        for (int row = 0 ; row < field.getWidth() ; row ++){
+            for (int col = 0 ; col < field.getDepth() ; col ++)
+            {
+                if (field.getObjectAt(row, col) != null)
+                {
+                    creatures.add(field.getObjectAt(row, col));
+                }
+            }
+        }
+        
         creatures.removeIf(n -> (n.isAlive() == false));
         
         currentStep++;
@@ -171,16 +180,16 @@ public class Simulator {
         boolean eat = false;
         String type = "";
         if (creature instanceof Sardine) {
-            maxAge = ModelConstants.SARDINE_MAX_AGE;
+            maxAge = ModelConstants.getSARDINE_MAX_AGE();
             eat = true;
             type = "Sardine";
         } else if (creature instanceof Shark) {
-            maxAge = ModelConstants.SHARK_MAX_AGE;
+            maxAge = ModelConstants.getSHARK_MAX_AGE();
             eat = true;
             type = "Shark";
         } else if (creature instanceof Plankton) {
             if (creature instanceof Plankton) {
-                maxAge = ModelConstants.PLANKTON_MAX_AGE;
+                maxAge = ModelConstants.getPLANKTON_MAX_AGE();
                 eat = true;
                 type = "Plankton";
             }
@@ -226,7 +235,7 @@ public class Simulator {
     }
     
     public static void main(String[] args) {
-        Simulator simulator = new Simulator(50, 50);
+        Simulator simulator = new Simulator(100, 100);
         simulator.startSimulation();
         System.out.println("Done");
     }

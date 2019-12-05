@@ -351,10 +351,9 @@ public class GUI extends javax.swing.JFrame {
         
         valueSetter();
         
-        
-        
-        Simulator simulator = new Simulator(50, 50);
-        simulator.startSimulation();
+        String[] input = {""};
+        Simulator.main(input);
+
         
     }//GEN-LAST:event_startButtonActionPerformed
 
