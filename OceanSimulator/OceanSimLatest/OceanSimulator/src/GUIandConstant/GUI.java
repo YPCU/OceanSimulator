@@ -349,7 +349,6 @@ public class GUI extends javax.swing.JFrame {
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
         
-        ModelConstants.setSHARK_CREATE_PROB(Double.parseDouble(sharkCreationProb.getText().trim()));
         valueSetter();
         
         
@@ -432,10 +431,11 @@ public class GUI extends javax.swing.JFrame {
 
     private void valueSetter(){ 
         
-
+    /*
      //ModelConstants.setDEFAULT_DEPTH(Integer.parseInt(sharkCreationProb.getText().trim()));
      //ModelConstants.setDEFAULT_WIDTH(Integer.parseInt(sharkCreationProb.getText().trim()));
      //ModelConstants.setSIM_LENGTH(Integer.parseInt(sharkCreationProb.getText().trim()));
+     */
 
      ModelConstants.setPLANKTON_CREATE_PROB(Double.parseDouble(planktonCreationProb.getText().trim()));
 
@@ -448,20 +448,21 @@ public class GUI extends javax.swing.JFrame {
      ModelConstants.setSARDINE_MAX_AGE(Integer.parseInt(sardinesMaxAge.getText().trim()));
      ModelConstants.setSHARK_MAX_AGE(Integer.parseInt(sharkMaxAge.getText().trim()));
 
+     /*
      //ModelConstants.setSARDINE_NUTRITIONAL_VALUE(Integer.parseInt(sharkCreationProb.getText().trim()));
      //ModelConstants.setPLANKTON_NUTRITIONAL_VALUE(Integer.parseInt(sharkCreationProb.getText().trim()));
-
+     */
 
      ModelConstants.setSARDINE_BREEDING_AGE(Integer.parseInt(sardinesBreedingAge.getText().trim()));
      ModelConstants.setSHARK_BREEDING_AGE(Integer.parseInt(sharkBreedingAge.getText().trim()));
      
 
 
-     ModelConstants.setPLANKTON_BREEDING_PROB(Double.parseDouble(planktonCreationProb.getText().trim()));
+     ModelConstants.setPLANKTON_BREEDING_PROB(Double.parseDouble(planktonBreedingProb.getText().trim()));
    
-     ModelConstants.setSARDINE_BREEDING_PROB(Double.parseDouble(sardinesCreationProb.getText().trim()));
+     ModelConstants.setSARDINE_BREEDING_PROB(Double.parseDouble(sardinesBreedingProb.getText().trim()));
 
-     ModelConstants.setSHARK_BREEDING_PROB(Double.parseDouble(sharkCreationProb.getText().trim()));
+     ModelConstants.setSHARK_BREEDING_PROB(Double.parseDouble(sharkBreedingProb.getText().trim()));
     }
 
 }
