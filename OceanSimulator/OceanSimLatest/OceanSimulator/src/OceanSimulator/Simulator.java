@@ -25,7 +25,6 @@ public class Simulator {
     public static int currentStep;
     private final int simLength = ModelConstants.SIM_LENGTH;
 //    private final int simLength = 17;
-            boolean show = false;
 
     public Simulator(int row, int col) {
         //RandomGenerator.initialiseWithSeed(4);
@@ -119,7 +118,8 @@ public class Simulator {
      */
     private void simulateOneStep() {
         
-        if (currentStep % (simLength/4) == 0) {
+        int stopTime = 100;
+        if (stopTime != 0 && currentStep % (simLength/stopTime) == 0) {
 
             try {
                 Thread.sleep(3000);
@@ -127,68 +127,31 @@ public class Simulator {
                 Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        /*
-        // Original code:
-        try {
-            Thread.sleep(50);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
-        }
        
- 
+        
+        ReinitialiseField(field);
+        
+
+       
         Collections.shuffle(creatures, RandomGenerator.getRandom());
         for (int i = 0; i < creatures.size(); i++) {
             Creature creature = creatures.get(i);
             creature.act(field);
-            }
-        currentStep++;
-        view.showStatus(currentStep, field);
-        */
-        
-        
-        
-       if(show) System.out.println("___________________________________"+ (currentStep + 1 )+"___________________________________\t");
-       if(show) show = false;
-        Collections.shuffle(creatures, RandomGenerator.getRandom());
-        for (int i = 0; i < creatures.size(); i++) {
-            Creature creature = creatures.get(i);
-            creature.act(field);
-            if( !creature.isAlive() ) {
-                show = true;
-                System.out.print("Life: "+creature.isAlive() + "\t || Age: "+creature.age);
-                if(field.getObjectAt(creature.getLocation()) != null){
-                    System.out.print("\t Location: "+creature.getLocation() +"\t||\t"+ field.getObjectAt(creature.getLocation()));
-                    if(creature instanceof Shark ){
-                        Shark shark = (Shark) creature;
-                        System.out.print("\t FoodLevel: "+ shark.foodLevel + "\t||\t"+ field.getObjectAt(creature.getLocation()));
-                    }
-                    if(creature instanceof Sardine){
-                        Sardine sardine = (Sardine) creature;
-                        System.out.print("\t FoodLevel: "+ sardine.foodLevel +"\t||\t"+ field.getObjectAt(creature.getLocation()));
-                    }
-                    field.place(null, creature.getLocation());
-                }
-                creatures.remove(i);
-                i--;
-                System.out.println();
-            }
+            
+            tellCreature(creature);
             
         }
-        System.out.println(currentStep);
-        if(currentStep > 145){
-                if(creatures.isEmpty()) {
-                    System.out.println("Creatures is empty");
-                    field.clear();
-                }
-                else{
-                    for(Creature Ecreature : creatures) System.out.println(Ecreature);
-                }
-            }
+        creatures.removeIf(n -> (n.isAlive() == false));
+        
         currentStep++;
         view.showStatus(currentStep, field);
     }
 
+    
+    
+    
+    
+    
     /**
      *
      * @param steps the number of time steps to go through
@@ -213,9 +176,83 @@ public class Simulator {
         }
     }
 
+    
+    /*
+    
+    */
+    private void ReinitialiseField(Field field){
+        field.clear();
+        for(Creature creature : creatures){
+            field.place(creature, creature.getLocation());
+        }
+        
+    }
+    
+   
+    
+    private void tellCreature(Creature creature) {
+        int maxAge = 0;
+        boolean eat = false;
+        String type = "";
+        if (creature instanceof Sardine) {
+            maxAge = ModelConstants.SARDINE_MAX_AGE;
+            eat = true;
+            type = "Sardine";
+        } else if (creature instanceof Shark) {
+            maxAge = ModelConstants.SHARK_MAX_AGE;
+            eat = true;
+            type = "Shark";
+        } else if (creature instanceof Plankton) {
+            if (creature instanceof Plankton) {
+                maxAge = ModelConstants.PLANKTON_MAX_AGE;
+                eat = true;
+                type = "Plankton";
+            }
+        } else {
+            System.out.print("Error. \n");
+            return;
+        }
+        if (!creature.isAlive) {
+            boolean reason = false;
+            if (creature.age < maxAge) {
+                System.out.print("Too old. \t");
+                reason = true;
+            }
+            if (eat) {
+                if (type.equals("Sardine")) {
+                    Sardine sardine = (Sardine) creature;
+                    if (sardine.foodLevel <= 0) {
+                        System.out.print("\t FoodLevel: " + sardine.foodLevel);
+                        reason = true;
+                    }
+
+                } else if (type.equals("Shark")) {
+                    Shark shark = (Shark) creature;
+                    if (shark.foodLevel <= 0) {
+                        System.out.print("\t FoodLevel: " + shark.foodLevel);
+                        reason = true;
+                    }
+                }
+            }
+            if (field.getObjectAt(creature.getLocation()) != null) {
+                System.out.print("Too crowded. \t");
+                reason = true;
+            }
+            if (!reason) {
+                System.out.println("___________________Mistake_______________");
+                System.out.print(currentStep);
+            }
+            System.out.println();
+
+        }
+
+        
+    }
+    
     public static void main(String[] args) {
         Simulator simulator = new Simulator(50, 50);
         simulator.startSimulation();
+        System.out.println("Done");
     }
 
 }
