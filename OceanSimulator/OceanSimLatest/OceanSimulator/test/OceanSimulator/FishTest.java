@@ -5,6 +5,8 @@
  */
 package OceanSimulator;
 
+import Ocean.Shark;
+import Ocean.Sardine;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

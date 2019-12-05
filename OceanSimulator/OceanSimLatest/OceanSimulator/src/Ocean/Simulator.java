@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package OceanSimulator;
+package Ocean;
 
+import GUIandConstant.ModelConstants;
 import java.awt.Color;
 
 /**

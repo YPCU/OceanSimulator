@@ -1,4 +1,4 @@
-package OceanSimulator;
+package Ocean;
 /**
  * Represent a location in a rectangular grid.
  * 

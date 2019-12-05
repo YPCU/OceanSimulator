@@ -1,4 +1,4 @@
-package OceanSimulator;
+package Ocean;
 
 import java.util.Collections;
 import java.util.Iterator;

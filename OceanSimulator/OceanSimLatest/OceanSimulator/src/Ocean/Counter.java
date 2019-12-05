@@ -1,4 +1,4 @@
-package OceanSimulator;
+package Ocean;
 
 /**
  * Provide a counter for a participant in the simulation.

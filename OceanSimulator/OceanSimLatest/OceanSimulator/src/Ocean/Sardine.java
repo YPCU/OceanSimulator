@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package OceanSimulator;
+package Ocean;
 
+import GUIandConstant.ModelConstants;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -12,9 +13,9 @@ import java.util.Random;
  *
  * @author 180127003
  */
-public class Shark extends Fish {
+public class Sardine extends Fish {
 
-    public Shark(int x, int y, boolean randAge) {
+    public Sardine(int x, int y, boolean randAge) {
         super(x, y, randAge);
     }
 
@@ -34,25 +35,24 @@ public class Shark extends Fish {
                 theField.place(null, location);
                 setLocation(loc);
                 theField.place(this, loc);
-            } else{
+            } else {
                 // they can't find food and have no free space
                 isAlive = false;
                 return;
             }
-                 // to implement breeding behaviour
-        Location newSharkLoc = breed(theField);
-            if (newSharkLoc != null) {
-               int x= newSharkLoc.getRow();
-                int y = newSharkLoc.getCol();
-                Shark newShark = new Shark(x, y, false);
-                newShark.setLocation(newSharkLoc);
-                theField.place(newShark, newSharkLoc);
-
+            // to implement breeding behaviour
+            Location newSardineLoc = breed(theField);
+            if (newSardineLoc != null) {
+                int x = newSardineLoc.getRow();
+                int y = newSardineLoc.getCol();
+                Sardine newSardine = new Sardine(x, y, false);
+                newSardine.setLocation(newSardineLoc);
+                theField.place(newSardine, newSardineLoc);
             }
             return;
         }
-        
 //        theField.place(null, location);
+
     }
 
     @Override
@@ -62,30 +62,27 @@ public class Shark extends Fish {
         while (adjacentLocations.hasNext()) {
             Location next = (Location) adjacentLocations.next();
             Creature creature = field.getObjectAt(next);
-            if (creature instanceof Sardine) {
+            if (creature instanceof Plankton) {
                 field.getObjectAt(next).isAlive = false;
-                foodLevel += ModelConstants.SARDINE_NUTRITIONAL_VALUE;
+                foodLevel += ModelConstants.PLANKTON_NUTRITIONAL_VALUE;
                 return next;
             }
         }
         return null;
     }
 
-     @Override
+    @Override
     public Location breed(Field field) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Random rand = RandomGenerator.getRandom();
-        if(age >= ModelConstants.SHARK_BREEDING_AGE && rand.nextDouble() < ModelConstants.SHARK_BREEDING_PROB){
-                // Location for new-born creature
-                Location babyLocation = field.freeAdjacentLocation(location);
-                if(babyLocation != null){
-                    return babyLocation;
-                }
+        if (age >= ModelConstants.SARDINE_BREEDING_AGE && rand.nextDouble() < ModelConstants.SARDINE_BREEDING_PROB) {
+            // Location for new-born creature
+            Location babyLocation = field.freeAdjacentLocation(location);
+            if (babyLocation != null) {
+                return babyLocation;
             }
+        }
         return null;
     }
-
-   
-    
 
 }

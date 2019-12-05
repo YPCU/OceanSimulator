@@ -1,4 +1,4 @@
-package OceanSimulator;
+package Ocean;
 
 import java.awt.*;
 import javax.swing.*;

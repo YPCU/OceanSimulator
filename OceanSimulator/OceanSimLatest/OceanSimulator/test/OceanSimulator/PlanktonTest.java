@@ -5,6 +5,9 @@
  */
 package OceanSimulator;
 
+import Ocean.Plankton;
+import Ocean.Field;
+import Ocean.Location;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
