@@ -118,6 +118,7 @@ public class Simulator {
      */
     private void simulateOneStep() {
         
+        /*
         int stopTime = 100;
         if (stopTime != 0 && currentStep % (simLength/stopTime) == 0) {
 
@@ -127,8 +128,8 @@ public class Simulator {
                 Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-       
-        
+       */
+
         ReinitialiseField(field);
         
 

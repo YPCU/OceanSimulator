@@ -95,9 +95,9 @@ public abstract class Creature {
 //        }
 //        return false;
 //    }
-    
+   
   //BREEDING needs checking
-
+    
     
   /*  public void act(Location location) {
         if (isAlive) {
