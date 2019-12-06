@@ -351,9 +351,13 @@ public class GUI extends javax.swing.JFrame {
         
         //valueSetter();
         Print();
-        Simulator simulator = new Simulator(100,100);
-        simulator.startSimulation(); 
+//        Simulator simulator = new Simulator(100,100);
+//        simulator.startSimulation(); 
+        Thread thread = new Thread(new Simulator(100,100));
+        thread.start();
         Print();
+        startButton.setVisible(false);
+        
         
 //        javax.swing.JFrame frame = new javax.swing.JFrame();
 //
@@ -444,7 +448,7 @@ public class GUI extends javax.swing.JFrame {
     private static javax.swing.JTextField sharkMaxAge;
     private javax.swing.JLabel sharkMaxAgeLabel;
     private javax.swing.JPanel sharkPanel;
-    private javax.swing.JButton startButton;
+    private static javax.swing.JButton startButton;
     // End of variables declaration//GEN-END:variables
 
     

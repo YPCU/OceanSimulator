@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Simulator {
+public class Simulator implements Runnable{
 
     public static Field field;
     public static SimulatorView view;
@@ -82,6 +82,10 @@ public class Simulator {
                 }
             }
         }
+    }
+    
+    public void run(){
+        startSimulation();
     }
 
    
