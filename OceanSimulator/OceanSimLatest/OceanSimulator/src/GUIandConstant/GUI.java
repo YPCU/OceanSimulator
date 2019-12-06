@@ -350,9 +350,24 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         valueSetter();
-        
+        Simulator simulator = new Simulator(100,100);
+//        javax.swing.JFrame frame = new javax.swing.JFrame();
+//
+//        
+//
+//        simulator.view.setSize(simulator.view.getPreferredSize());
+//        frame.setSize(500,500);
+//        frame.setContentPane(simulator.view);
+//        frame.setVisible(true);
+        //simulator.view.setVisible(true);
+        simulator.startSimulation();
+        /*
         String[] input = {""};
         Simulator.main(input);
+        */
+
+        
+        
 
         
     }//GEN-LAST:event_startButtonActionPerformed
