@@ -349,16 +349,14 @@ public class GUI extends javax.swing.JFrame {
     private static void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
         
-        //valueSetter();
-        Print();
-//        Simulator simulator = new Simulator(100,100);
-//        simulator.startSimulation(); 
+        //Print();
+
         Thread thread = new Thread(new Simulator(100,100));
         thread.start();
-        Print();
+        //Print();
         startButton.setVisible(false);
         //startButton will disappear after simulator started, since any input further 
-        // can not chnage the final constants
+        // can not chnage the final constants.
       
 
         
@@ -440,85 +438,60 @@ public class GUI extends javax.swing.JFrame {
 
     
     
-//       private static void valueSetter() {
-//
-//        /*
-//     //setDEFAULT_DEPTH(Integer.parseInt(sharkCreationProb.getText().trim()));
-//     //setDEFAULT_WIDTH(Integer.parseInt(sharkCreationProb.getText().trim()));
-//     //setSIM_LENGTH(Integer.parseInt(sharkCreationProb.getText().trim()));
-//         */
-//        double d = ModelConstants.PLANKTON_CREATE_PROB;
-//
-//        d= ModelConstants.SARDINE_CREATE_PROB;
-//
-//        d= ModelConstants.SHARK_CREATE_PROB;
-//        
-//        
-//        int i  = ModelConstants.PLANKTON_MAX_AGE;
-//        i = ModelConstants.SARDINE_MAX_AGE;
-//        i = ModelConstants.SHARK_MAX_AGE;
-//
-//        /*
-//     //ModelConstants.SARDINE_NUTRITIONAL_VALUE(Integer.parseInt(sharkCreationProb.getText.trim));
-//     //ModelConstants.PLANKTON_NUTRITIONAL_VALUE(Integer.parseInt(sharkCreationProb.getText.trim));
-//         */
-//        i= ModelConstants.SARDINE_BREEDING_AGE;
-//        i = ModelConstants.SHARK_BREEDING_AGE;
-//
-//        d = ModelConstants.PLANKTON_BREEDING_PROB;
-//
-//        d = ModelConstants.SARDINE_BREEDING_PROB;
-//
-//        d = ModelConstants.SHARK_BREEDING_PROB;
-//    }
 
-     public static double setPLANKTON_CREATE_PROB() {
+
+     public static double getPLANKTON_CREATE_PROB() {
         return Double.parseDouble(planktonCreationProb.getText().trim());
     }
 
-    public static double setSARDINE_CREATE_PROB() {
+    public static double getSARDINE_CREATE_PROB() {
         return Double.parseDouble(sardinesCreationProb.getText().trim());
     }
 
-    public static double setSHARK_CREATE_PROB() {
+    public static double getSHARK_CREATE_PROB() {
         return Double.parseDouble(sharkCreationProb.getText().trim());
     }
 
-    public static int setPLANKTON_MAX_AGE() {
+    public static int getPLANKTON_MAX_AGE() {
         return Integer.parseInt(planktonMaxAge.getText().trim());
     }
 
-    public static int setSARDINE_MAX_AGE() {
+    public static int getSARDINE_MAX_AGE() {
         return Integer.parseInt(sardinesMaxAge.getText().trim());
     }
 
-    public static int setSHARK_MAX_AGE() {
+    public static int getSHARK_MAX_AGE() {
         return Integer.parseInt(sharkMaxAge.getText().trim());
     }
-//           public static double setPLANKTON_BREEDING_AGE(){
+//           public static double getPLANKTON_BREEDING_AGE(){
 //        return Double.parseDouble(planktonCreationProb.getText().trim());
 //    }
+//      breeding age getter is not implemented
 
-    public static int setSARDINE_BREEDING_AGE() {
+    public static int getSARDINE_BREEDING_AGE() {
         return Integer.parseInt(sardinesBreedingAge.getText().trim());
     }
 
-    public static int setSHARK_BREEDING_AGE() {
+    public static int getSHARK_BREEDING_AGE() {
         return Integer.parseInt(sharkBreedingAge.getText().trim());
     }
 
-    public static double setPLANKTON_BREEDING_PROB() {
+    public static double getPLANKTON_BREEDING_PROB() {
         return Double.parseDouble(planktonBreedingProb.getText().trim());
     }
 
-    public static double setSARDINE_BREEDING_PROB() {
+    public static double getSARDINE_BREEDING_PROB() {
         return Double.parseDouble(sardinesBreedingProb.getText().trim());
     }
 
-    public static double setSHARK_BREEDING_PROB() {
+    public static double getSHARK_BREEDING_PROB() {
         return Double.parseDouble(sharkBreedingProb.getText().trim());
     }
     
+    /**
+    *   Tester method to show the behaviour of setting constant variables
+    * 
+    */
     private static void Print(){
     //declearing the default depth of the Ocean field.
     System.out.println(ModelConstants.DEFAULT_DEPTH);

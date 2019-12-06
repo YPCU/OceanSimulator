@@ -25,7 +25,6 @@ public class Simulator implements Runnable{
     public static int currentStep;
     private final int simLength = ModelConstants.SIM_LENGTH;
 
-//    private final int simLength = 17;
 
     public Simulator(int row, int col) {
         RandomGenerator.initialiseWithSeed(44);
@@ -43,11 +42,6 @@ public class Simulator implements Runnable{
         view.setColor(Shark.class, Color.red);
         currentStep = 0;
 
-        // Mistake below startSimulation(); repeated call causing simulator 
-        // twice when main method is called.
-        //Constructor build the class object and startSimulator invoke as 
-        //an action in main method.
-        //startSimulation();
     }
     
     
@@ -102,21 +96,6 @@ public class Simulator implements Runnable{
      * Simulates a single time jump in the simulation
      */
     private void simulateOneStep() {
-        
-        
-        int stopTime = 0;
-        if (stopTime != 0 && currentStep % (simLength/stopTime) == 0) {
-
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-       
-
-        //ReinitialiseField(field);
-        
 
         Collections.shuffle(creatures, RandomGenerator.getRandom());
         for (int i = 0; i < creatures.size(); i++) {
@@ -127,8 +106,11 @@ public class Simulator implements Runnable{
             }
             
            // tellCreature(creature);
+           // test method commented.
             
         }
+        //ArrayList creatures are rewritten by data in field below,
+        //to include all newly borned creatures
         creatures.clear();
         for (int row = 0 ; row < field.getWidth() ; row ++){
             for (int col = 0 ; col < field.getDepth() ; col ++)
@@ -139,7 +121,7 @@ public class Simulator implements Runnable{
                 }
             }
         }
-        
+        // Removing dead creatures below
         creatures.removeIf(n -> (n.isAlive() == false));
         ReinitialiseField(field);
         currentStep++;
@@ -167,13 +149,14 @@ public class Simulator implements Runnable{
     }
 
     
-    /*
-    
+    /**
+     * @param field the field to be reinitialized according to ArrayList creatures.
+     * 
     */
     private void ReinitialiseField(Field field){
         field.clear();
         for(Creature creature : creatures){
-            //if(!creature.isAlive()) System.out.println("Pop");
+
                 field.place(creature, creature.getLocation());
             
         }
@@ -181,7 +164,10 @@ public class Simulator implements Runnable{
     }
     
    
-    
+    /**
+     * This method will shows data of a creature which is not killed normally
+     * @param creature the single creature to be inspected.
+     */
     private void tellCreature(Creature creature) {
         int maxAge = 0;
         boolean eat = false;
@@ -208,6 +194,7 @@ public class Simulator implements Runnable{
 
         if (!creature.isAlive) {
             boolean reason = false;
+            //  Reason of death to be proven.
             if (creature.age < maxAge) {
                 System.out.print("Too old. \t");
                 reason = true;
