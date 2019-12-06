@@ -24,7 +24,7 @@ public class Simulator {
     public static SimulatorView view;
     public static ArrayList<Creature> creatures;
     public static int currentStep;
-    private final int simLength = ModelConstants.getSIM_LENGTH();
+    private final int simLength = ModelConstants.SIM_LENGTH;
 
 //    private final int simLength = 17;
 
@@ -36,7 +36,7 @@ public class Simulator {
         if (row > 0 && col > 0) {
             field = new Field(row, col);
         } else {
-            field = new Field(ModelConstants.getDEFAULT_DEPTH(), ModelConstants.getDEFAULT_WIDTH());
+            field = new Field(ModelConstants.DEFAULT_DEPTH, ModelConstants.DEFAULT_WIDTH);
         }
         view = new SimulatorView(row, col);
         view.setColor(Plankton.class, Color.green);
@@ -60,9 +60,9 @@ public class Simulator {
         field.clear();
         int x = field.getWidth();
         int y = field.getDepth();
-        double sharkProb = ModelConstants.getSHARK_CREATE_PROB();
-        double sardineProb = ModelConstants.getSARDINE_CREATE_PROB();
-        double planktonProb = ModelConstants.getPLANKTON_CREATE_PROB();
+        double sharkProb = ModelConstants.SHARK_CREATE_PROB;
+        double sardineProb = ModelConstants.SARDINE_CREATE_PROB;
+        double planktonProb = ModelConstants.PLANKTON_CREATE_PROB;
 
         for (int row = 0; row < x; ++row) {
             for (int col = 0; col < y; ++col) {
@@ -184,16 +184,16 @@ public class Simulator {
         boolean eat = false;
         String type = "";
         if (creature instanceof Sardine) {
-            maxAge = ModelConstants.getSARDINE_MAX_AGE();
+            maxAge = ModelConstants.SARDINE_MAX_AGE;
             eat = true;
             type = "Sardine";
         } else if (creature instanceof Shark) {
-            maxAge = ModelConstants.getSHARK_MAX_AGE();
+            maxAge = ModelConstants.SHARK_MAX_AGE;
             eat = true;
             type = "Shark";
         } else if (creature instanceof Plankton) {
             if (creature instanceof Plankton) {
-                maxAge = ModelConstants.getPLANKTON_MAX_AGE();
+                maxAge = ModelConstants.PLANKTON_MAX_AGE;
                 eat = true;
                 type = "Plankton";
 

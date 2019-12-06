@@ -351,6 +351,7 @@ public class GUI extends javax.swing.JFrame {
         
         valueSetter();
         Simulator simulator = new Simulator(100,100);
+        simulator.startSimulation();
 //        javax.swing.JFrame frame = new javax.swing.JFrame();
 //
 //        
@@ -360,7 +361,7 @@ public class GUI extends javax.swing.JFrame {
 //        frame.setContentPane(simulator.view);
 //        frame.setVisible(true);
         //simulator.view.setVisible(true);
-        simulator.startSimulation();
+
         /*
         String[] input = {""};
         Simulator.main(input);
@@ -412,71 +413,114 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JTextField planktonBreedingProb;
+    private static javax.swing.JTextField planktonBreedingProb;
     private javax.swing.JLabel planktonBreedingProbLabel;
     private javax.swing.JLabel planktonCreationLabel;
-    private javax.swing.JTextField planktonCreationProb;
+    private static javax.swing.JTextField planktonCreationProb;
     private javax.swing.JLabel planktonLabel;
-    private javax.swing.JTextField planktonMaxAge;
+    private static javax.swing.JTextField planktonMaxAge;
     private javax.swing.JLabel planktonMaxAgeLabel;
     private javax.swing.JPanel planktonPanel;
     private javax.swing.JLabel sardinesBreedAgeLabel;
     private javax.swing.JLabel sardinesBreedProbLabel;
-    private javax.swing.JTextField sardinesBreedingAge;
-    private javax.swing.JTextField sardinesBreedingProb;
+    private static javax.swing.JTextField sardinesBreedingAge;
+    private static javax.swing.JTextField sardinesBreedingProb;
     private javax.swing.JLabel sardinesCreationLabel;
-    private javax.swing.JTextField sardinesCreationProb;
+    private static javax.swing.JTextField sardinesCreationProb;
     private javax.swing.JLabel sardinesLabel;
-    private javax.swing.JTextField sardinesMaxAge;
+    private static javax.swing.JTextField sardinesMaxAge;
     private javax.swing.JLabel sardinesMaxAgeLabel;
     private javax.swing.JPanel sardinesPanel;
     private javax.swing.JLabel sharkBreedAgeLabel;
     private javax.swing.JLabel sharkBreedProbLabel;
-    private javax.swing.JTextField sharkBreedingAge;
-    private javax.swing.JTextField sharkBreedingProb;
+    private static javax.swing.JTextField sharkBreedingAge;
+    private static javax.swing.JTextField sharkBreedingProb;
     private javax.swing.JLabel sharkCreationLabel;
-    private javax.swing.JTextField sharkCreationProb;
+    private static javax.swing.JTextField sharkCreationProb;
     private javax.swing.JLabel sharkLabel;
-    private javax.swing.JTextField sharkMaxAge;
+    private static javax.swing.JTextField sharkMaxAge;
     private javax.swing.JLabel sharkMaxAgeLabel;
     private javax.swing.JPanel sharkPanel;
     private javax.swing.JButton startButton;
     // End of variables declaration//GEN-END:variables
 
+    
+    
+   
+    
     private void valueSetter(){ 
         
     /*
-     //ModelConstants.setDEFAULT_DEPTH(Integer.parseInt(sharkCreationProb.getText().trim()));
-     //ModelConstants.setDEFAULT_WIDTH(Integer.parseInt(sharkCreationProb.getText().trim()));
-     //ModelConstants.setSIM_LENGTH(Integer.parseInt(sharkCreationProb.getText().trim()));
+     //setDEFAULT_DEPTH(Integer.parseInt(sharkCreationProb.getText().trim()));
+     //setDEFAULT_WIDTH(Integer.parseInt(sharkCreationProb.getText().trim()));
+     //setSIM_LENGTH(Integer.parseInt(sharkCreationProb.getText().trim()));
      */
+    
 
-     ModelConstants.setPLANKTON_CREATE_PROB(Double.parseDouble(planktonCreationProb.getText().trim()));
+     setPLANKTON_CREATE_PROB();
 
-     ModelConstants.setSARDINE_CREATE_PROB(Double.parseDouble(sardinesCreationProb.getText().trim()));
+     setSARDINE_CREATE_PROB();
 
-     ModelConstants.setSHARK_CREATE_PROB(Double.parseDouble(sharkCreationProb.getText().trim()));
+     setSHARK_CREATE_PROB();
 
 
-     ModelConstants.setPLANKTON_MAX_AGE(Integer.parseInt(planktonMaxAge.getText().trim()));
-     ModelConstants.setSARDINE_MAX_AGE(Integer.parseInt(sardinesMaxAge.getText().trim()));
-     ModelConstants.setSHARK_MAX_AGE(Integer.parseInt(sharkMaxAge.getText().trim()));
+     setPLANKTON_MAX_AGE();
+     setSARDINE_MAX_AGE();
+     setSHARK_MAX_AGE();
 
      /*
-     //ModelConstants.setSARDINE_NUTRITIONAL_VALUE(Integer.parseInt(sharkCreationProb.getText().trim()));
-     //ModelConstants.setPLANKTON_NUTRITIONAL_VALUE(Integer.parseInt(sharkCreationProb.getText().trim()));
+     //setSARDINE_NUTRITIONAL_VALUE(Integer.parseInt(sharkCreationProb.getText().trim()));
+     //setPLANKTON_NUTRITIONAL_VALUE(Integer.parseInt(sharkCreationProb.getText().trim()));
      */
 
-     ModelConstants.setSARDINE_BREEDING_AGE(Integer.parseInt(sardinesBreedingAge.getText().trim()));
-     ModelConstants.setSHARK_BREEDING_AGE(Integer.parseInt(sharkBreedingAge.getText().trim()));
+     setSARDINE_BREEDING_AGE();
+     setSHARK_BREEDING_AGE();
      
 
 
-     ModelConstants.setPLANKTON_BREEDING_PROB(Double.parseDouble(planktonBreedingProb.getText().trim()));
+     setPLANKTON_BREEDING_PROB();
    
-     ModelConstants.setSARDINE_BREEDING_PROB(Double.parseDouble(sardinesBreedingProb.getText().trim()));
+     setSARDINE_BREEDING_PROB();
 
-     ModelConstants.setSHARK_BREEDING_PROB(Double.parseDouble(sharkBreedingProb.getText().trim()));
+     setSHARK_BREEDING_PROB();
     }
 
+     public static double setPLANKTON_CREATE_PROB(){
+        return Double.parseDouble(planktonCreationProb.getText().trim());
+    }
+     
+      public static double setSARDINE_CREATE_PROB(){
+        return Double.parseDouble(sardinesCreationProb.getText().trim());
+    }
+       public static double setSHARK_CREATE_PROB(){
+        return Double.parseDouble(sharkCreationProb.getText().trim());
+    }
+        public static int setPLANKTON_MAX_AGE(){
+        return Integer.parseInt(planktonMaxAge.getText().trim());
+    }
+         public static int setSARDINE_MAX_AGE(){
+        return Integer.parseInt(sardinesMaxAge.getText().trim());
+    }
+          public static int setSHARK_MAX_AGE(){
+        return Integer.parseInt(sharkMaxAge.getText().trim());
+    }
+//           public static double setPLANKTON_BREEDING_AGE(){
+//        return Double.parseDouble(planktonCreationProb.getText().trim());
+//    }
+            public static int setSARDINE_BREEDING_AGE(){
+        return Integer.parseInt(sardinesBreedingAge.getText().trim());
+    }
+             public static int setSHARK_BREEDING_AGE(){
+        return Integer.parseInt(sharkBreedingAge.getText().trim());
+    }
+
+    public static double setPLANKTON_BREEDING_PROB(){
+        return Double.parseDouble(planktonBreedingProb.getText().trim());
+    }
+    public static double setSARDINE_BREEDING_PROB(){
+        return Double.parseDouble(sardinesBreedingProb.getText().trim());
+    }
+    public static double setSHARK_BREEDING_PROB(){
+        return Double.parseDouble(sharkBreedingProb.getText().trim());
+    }
 }

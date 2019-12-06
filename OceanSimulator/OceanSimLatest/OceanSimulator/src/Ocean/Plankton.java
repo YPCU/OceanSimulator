@@ -44,7 +44,7 @@ public class Plankton extends Creature {
     public Location breed(Field field) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Random rand = RandomGenerator.getRandom();
-        if (age >= ModelConstants.getPLANKTON_BREEDING_AGE() && rand.nextDouble() < ModelConstants.getPLANKTON_BREEDING_PROB()) {
+        if (age >= ModelConstants.PLANKTON_BREEDING_AGE && rand.nextDouble() < ModelConstants.PLANKTON_BREEDING_PROB) {
             // Location for new-born creature
             Location babyLocation = field.freeAdjacentLocation(location);
             if (babyLocation != null) {

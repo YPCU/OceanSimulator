@@ -67,7 +67,7 @@ public class Sardine extends Fish {
             Creature creature = field.getObjectAt(next);
             if (creature instanceof Plankton) {
                 field.getObjectAt(next).isAlive = false;
-                foodLevel += ModelConstants.getPLANKTON_NUTRITIONAL_VALUE();
+                foodLevel += ModelConstants.PLANKTON_NUTRITIONAL_VALUE;
                 return next;
             }
         }
@@ -78,7 +78,7 @@ public class Sardine extends Fish {
     public Location breed(Field field) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Random rand = RandomGenerator.getRandom();
-        if (age >= ModelConstants.getSARDINE_BREEDING_AGE() && rand.nextDouble() < ModelConstants.getSARDINE_BREEDING_PROB()) {
+        if (age >= ModelConstants.SARDINE_BREEDING_AGE && rand.nextDouble() < ModelConstants.SARDINE_BREEDING_PROB) {
             // Location for new-born creature
             Location babyLocation = field.freeAdjacentLocation(location);
             if (babyLocation != null) {

@@ -32,13 +32,13 @@ public abstract class Creature {
         
         
         if (this instanceof Plankton && randAge) {
-            age = rand.nextInt(ModelConstants.getPLANKTON_MAX_AGE());
+            age = rand.nextInt(ModelConstants.PLANKTON_MAX_AGE);
         }
         if (this instanceof Sardine && randAge) {
-            age = rand.nextInt(ModelConstants.getSARDINE_MAX_AGE());
+            age = rand.nextInt(ModelConstants.SARDINE_MAX_AGE);
         }
         if (this instanceof Shark && randAge) {
-            age = rand.nextInt(ModelConstants.getSHARK_MAX_AGE());
+            age = rand.nextInt(ModelConstants.SHARK_MAX_AGE);
         } else {
             age = 0;
         }
@@ -77,11 +77,11 @@ public abstract class Creature {
 
     public void incrementAge() {
         age ++;
-        if (this instanceof Shark && age >= ModelConstants.getSARDINE_MAX_AGE()) {
+        if (this instanceof Shark && age >= ModelConstants.SARDINE_MAX_AGE) {
             setIsAlive(false);
-        } else if (this instanceof Sardine && age >= ModelConstants.getSARDINE_MAX_AGE()) {
+        } else if (this instanceof Sardine && age >= ModelConstants.SARDINE_MAX_AGE) {
             setIsAlive(false);
-        } else if (this instanceof Plankton && age >= ModelConstants.getPLANKTON_MAX_AGE()) {
+        } else if (this instanceof Plankton && age >= ModelConstants.PLANKTON_MAX_AGE) {
             setIsAlive(false);
         }
     }
