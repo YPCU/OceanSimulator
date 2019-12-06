@@ -23,37 +23,39 @@ public class Shark extends Fish {
     public void act(Field theField) {
         incrementAge();
         if (isAlive) {
-            Location loc = theField.freeAdjacentLocation(location);
+
             // implementing behaviour to occupy prey's location.
             Location prey = findFood(theField, location);
             if (prey != null) {
-                loc = prey;
+                location = prey;
             } else {
                 makeHungry();
+                Location loc = theField.freeAdjacentLocation(location);
+                if (loc != null) {
+                    theField.place(null, location);
+                    setLocation(loc);
+                    theField.place(this, loc);
+                } else {
+                    // they can't find food and have no free space
+                    isAlive = false;
+                    theField.place(null, location);
+                    return;
+                }
             }
-            if (loc != null) {
-                theField.place(null, location);
-                setLocation(loc);
-                theField.place(this, loc);
-            } else{
-                // they can't find food and have no free space
-                isAlive = false;
-                return;
-            }
-                 // to implement breeding behaviour
-        Location newSharkLoc = breed(theField);
+            // to implement breeding behaviour
+            Location newSharkLoc = breed(theField);
             if (newSharkLoc != null) {
-               int x= newSharkLoc.getRow();
+                int x = newSharkLoc.getRow();
                 int y = newSharkLoc.getCol();
                 Shark newShark = new Shark(x, y, false);
                 newShark.setLocation(newSharkLoc);
                 theField.place(newShark, newSharkLoc);
-
             }
             return;
+        } else {
+            theField.place(null, location);
         }
         
-//        theField.place(null, location);
     }
 
     @Override

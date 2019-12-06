@@ -112,16 +112,18 @@ public class Simulator {
         }
        
 
-        ReinitialiseField(field);
+        //ReinitialiseField(field);
         
 
-       
         Collections.shuffle(creatures, RandomGenerator.getRandom());
         for (int i = 0; i < creatures.size(); i++) {
             Creature creature = creatures.get(i);
-            creature.act(field);
             
-            tellCreature(creature);
+            if(creature.isAlive()){
+                creature.act(field);
+            }
+            
+           // tellCreature(creature);
             
         }
         creatures.clear();
@@ -136,7 +138,7 @@ public class Simulator {
         }
         
         creatures.removeIf(n -> (n.isAlive() == false));
-        
+        ReinitialiseField(field);
         currentStep++;
         view.showStatus(currentStep, field);
     }
@@ -168,7 +170,9 @@ public class Simulator {
     private void ReinitialiseField(Field field){
         field.clear();
         for(Creature creature : creatures){
-            field.place(creature, creature.getLocation());
+            //if(!creature.isAlive()) System.out.println("Pop");
+                field.place(creature, creature.getLocation());
+            
         }
         
     }
@@ -192,11 +196,13 @@ public class Simulator {
                 maxAge = ModelConstants.getPLANKTON_MAX_AGE();
                 eat = true;
                 type = "Plankton";
+
             }
         } else {
             System.out.print("Error. \n");
             return;
         }
+
         if (!creature.isAlive) {
             boolean reason = false;
             if (creature.age < maxAge) {
@@ -224,7 +230,8 @@ public class Simulator {
                 reason = true;
             }
             if (!reason) {
-                System.out.println("___________________Mistake_______________");
+                System.out.println("______________________________________Mistake______________________________________");
+                        System.out.print(type + "\t");
                 System.out.print(currentStep);
             }
             System.out.println();
