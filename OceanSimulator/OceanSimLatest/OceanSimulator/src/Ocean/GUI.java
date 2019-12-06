@@ -357,22 +357,9 @@ public class GUI extends javax.swing.JFrame {
         thread.start();
         Print();
         startButton.setVisible(false);
-        
-        
-//        javax.swing.JFrame frame = new javax.swing.JFrame();
-//
-//        
-//
-//        simulator.view.setSize(simulator.view.getPreferredSize());
-//        frame.setSize(500,500);
-//        frame.setContentPane(simulator.view);
-//        frame.setVisible(true);
-        //simulator.view.setVisible(true);
-
-        /*
-        String[] input = {""};
-        Simulator.main(input);
-        */
+        //startButton will disappear after simulator started, since any input further 
+        // can not chnage the final constants
+      
 
         
         
