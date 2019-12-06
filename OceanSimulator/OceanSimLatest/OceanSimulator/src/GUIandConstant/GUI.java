@@ -346,12 +346,15 @@ public class GUI extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+    private static void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
         
-        valueSetter();
+        //valueSetter();
+        Print();
         Simulator simulator = new Simulator(100,100);
-        simulator.startSimulation();
+        simulator.startSimulation(); 
+        Print();
+        
 //        javax.swing.JFrame frame = new javax.swing.JFrame();
 //
 //        
@@ -446,81 +449,120 @@ public class GUI extends javax.swing.JFrame {
 
     
     
-   
-    
-    private void valueSetter(){ 
-        
-    /*
-     //setDEFAULT_DEPTH(Integer.parseInt(sharkCreationProb.getText().trim()));
-     //setDEFAULT_WIDTH(Integer.parseInt(sharkCreationProb.getText().trim()));
-     //setSIM_LENGTH(Integer.parseInt(sharkCreationProb.getText().trim()));
-     */
-    
+//       private static void valueSetter() {
+//
+//        /*
+//     //setDEFAULT_DEPTH(Integer.parseInt(sharkCreationProb.getText().trim()));
+//     //setDEFAULT_WIDTH(Integer.parseInt(sharkCreationProb.getText().trim()));
+//     //setSIM_LENGTH(Integer.parseInt(sharkCreationProb.getText().trim()));
+//         */
+//        double d = ModelConstants.PLANKTON_CREATE_PROB;
+//
+//        d= ModelConstants.SARDINE_CREATE_PROB;
+//
+//        d= ModelConstants.SHARK_CREATE_PROB;
+//        
+//        
+//        int i  = ModelConstants.PLANKTON_MAX_AGE;
+//        i = ModelConstants.SARDINE_MAX_AGE;
+//        i = ModelConstants.SHARK_MAX_AGE;
+//
+//        /*
+//     //ModelConstants.SARDINE_NUTRITIONAL_VALUE(Integer.parseInt(sharkCreationProb.getText.trim));
+//     //ModelConstants.PLANKTON_NUTRITIONAL_VALUE(Integer.parseInt(sharkCreationProb.getText.trim));
+//         */
+//        i= ModelConstants.SARDINE_BREEDING_AGE;
+//        i = ModelConstants.SHARK_BREEDING_AGE;
+//
+//        d = ModelConstants.PLANKTON_BREEDING_PROB;
+//
+//        d = ModelConstants.SARDINE_BREEDING_PROB;
+//
+//        d = ModelConstants.SHARK_BREEDING_PROB;
+//    }
 
-     setPLANKTON_CREATE_PROB();
-
-     setSARDINE_CREATE_PROB();
-
-     setSHARK_CREATE_PROB();
-
-
-     setPLANKTON_MAX_AGE();
-     setSARDINE_MAX_AGE();
-     setSHARK_MAX_AGE();
-
-     /*
-     //setSARDINE_NUTRITIONAL_VALUE(Integer.parseInt(sharkCreationProb.getText().trim()));
-     //setPLANKTON_NUTRITIONAL_VALUE(Integer.parseInt(sharkCreationProb.getText().trim()));
-     */
-
-     setSARDINE_BREEDING_AGE();
-     setSHARK_BREEDING_AGE();
-     
-
-
-     setPLANKTON_BREEDING_PROB();
-   
-     setSARDINE_BREEDING_PROB();
-
-     setSHARK_BREEDING_PROB();
-    }
-
-     public static double setPLANKTON_CREATE_PROB(){
+     public static double setPLANKTON_CREATE_PROB() {
         return Double.parseDouble(planktonCreationProb.getText().trim());
     }
-     
-      public static double setSARDINE_CREATE_PROB(){
+
+    public static double setSARDINE_CREATE_PROB() {
         return Double.parseDouble(sardinesCreationProb.getText().trim());
     }
-       public static double setSHARK_CREATE_PROB(){
+
+    public static double setSHARK_CREATE_PROB() {
         return Double.parseDouble(sharkCreationProb.getText().trim());
     }
-        public static int setPLANKTON_MAX_AGE(){
+
+    public static int setPLANKTON_MAX_AGE() {
         return Integer.parseInt(planktonMaxAge.getText().trim());
     }
-         public static int setSARDINE_MAX_AGE(){
+
+    public static int setSARDINE_MAX_AGE() {
         return Integer.parseInt(sardinesMaxAge.getText().trim());
     }
-          public static int setSHARK_MAX_AGE(){
+
+    public static int setSHARK_MAX_AGE() {
         return Integer.parseInt(sharkMaxAge.getText().trim());
     }
 //           public static double setPLANKTON_BREEDING_AGE(){
 //        return Double.parseDouble(planktonCreationProb.getText().trim());
 //    }
-            public static int setSARDINE_BREEDING_AGE(){
+
+    public static int setSARDINE_BREEDING_AGE() {
         return Integer.parseInt(sardinesBreedingAge.getText().trim());
     }
-             public static int setSHARK_BREEDING_AGE(){
+
+    public static int setSHARK_BREEDING_AGE() {
         return Integer.parseInt(sharkBreedingAge.getText().trim());
     }
 
-    public static double setPLANKTON_BREEDING_PROB(){
+    public static double setPLANKTON_BREEDING_PROB() {
         return Double.parseDouble(planktonBreedingProb.getText().trim());
     }
-    public static double setSARDINE_BREEDING_PROB(){
+
+    public static double setSARDINE_BREEDING_PROB() {
         return Double.parseDouble(sardinesBreedingProb.getText().trim());
     }
-    public static double setSHARK_BREEDING_PROB(){
+
+    public static double setSHARK_BREEDING_PROB() {
         return Double.parseDouble(sharkBreedingProb.getText().trim());
+    }
+    
+    private static void Print(){
+    //declearing the default depth of the Ocean field.
+    System.out.println(ModelConstants.DEFAULT_DEPTH);
+    //declearing the default width of the Ocean field.
+    System.out.println(ModelConstants.DEFAULT_WIDTH);
+    System.out.println(ModelConstants.SIM_LENGTH);
+
+    //declearing the plankton generating probability 
+    System.out.println(ModelConstants. PLANKTON_CREATE_PROB);
+    //declearing the sardine generating probability 
+    System.out.println(ModelConstants. SARDINE_CREATE_PROB);
+    //declearing the shark generating probability 
+    System.out.println(ModelConstants. SHARK_CREATE_PROB);
+
+    //declearing the max age that plankton can live up to.
+    System.out.println(ModelConstants.PLANKTON_MAX_AGE);
+    //declearing the max age that sardine can live up to.
+    System.out.println(ModelConstants.SARDINE_MAX_AGE);
+    //declearing the max age that shark can live up to.
+    System.out.println(ModelConstants.SHARK_MAX_AGE );
+
+    System.out.println(ModelConstants.SARDINE_NUTRITIONAL_VALUE);
+    System.out.println(ModelConstants.PLANKTON_NUTRITIONAL_VALUE);
+
+    //declaring the minimum breeding age
+    System.out.println(ModelConstants.SARDINE_BREEDING_AGE);
+    System.out.println(ModelConstants.SHARK_BREEDING_AGE);
+    System.out.println(ModelConstants.PLANKTON_BREEDING_AGE);
+
+    // defines probability of plankton breeding in each timestep
+    System.out.println(ModelConstants. PLANKTON_BREEDING_PROB);
+    // defines probability of sardine breeding in each timestep    
+    System.out.println(ModelConstants. SARDINE_BREEDING_PROB);
+    // defines probability of shark breeding in each timestep
+    System.out.println(ModelConstants. SHARK_BREEDING_PROB);
+
     }
 }
