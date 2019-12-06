@@ -5,7 +5,6 @@
  */
 package Ocean;
 
-import GUIandConstant.ModelConstants;
 import java.awt.Color;
 
 /**
