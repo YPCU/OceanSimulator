@@ -12,14 +12,15 @@ package Ocean;
  */
 public abstract class Fish extends Creature{
     
+    // store the energy level of the fish.
     protected int foodLevel;
     public Fish(int x, int y, boolean rndAge) {
         super(x, y, rndAge);
         foodLevel = 100;
     }
     
-    /* 
-    food level
+    /* *
+    * return the food level
     */
     public int getFoodLevel() {
         return foodLevel;
